@@ -21,7 +21,7 @@ export default class SingleHat extends Component {
       <div>
         <h2>{hat.name}</h2>
         <div>
-          <img src={hat.productImg} />
+          <img src={`/${hat.productImg}`} />
         </div>
         <button onClick={this.hatSpeak}>Click for sound!</button>
         <br />
