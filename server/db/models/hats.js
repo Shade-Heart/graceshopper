@@ -8,39 +8,37 @@ const Hat = db.define('hats', {
     allowNull: false
   },
   description: {
-      type: Sequelize.TEXT,
-      allowNull: false
+    type: Sequelize.TEXT,
+    allowNull: false
   },
   price: {
-      type: Sequelize.DECIMAL,
-      defaultValue: 0.00
+    type: Sequelize.DECIMAL,
+    defaultValue: 0.0
   },
   quantity: {
-      type: Sequelize.INTEGER,
-      defaultValue: 0
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   },
   category: {
-      type: Sequelize.STRING,
-      allowNull: false
+    type: Sequelize.STRING,
+    allowNull: false
   },
   productImg: {
     type: Sequelize.STRING,
-    defaultValue: "DefaultHat.jpg"
+    defaultValue: './DefaultHat.jpg'
   },
   size: {
-      type: Sequelize.ENUM("S","M","L"),
-      allowNull: false,
-      
+    type: Sequelize.ENUM('S', 'M', 'L'),
+    allowNull: false
   }
-
 })
 
-Hat.hook('beforeValidate',(hats) => {
-    hats.name = hats.name.charAt(0).toUpperCase() + hats.name.slice(1)
-  })
+Hat.hook('beforeValidate', hats => {
+  hats.name = hats.name.charAt(0).toUpperCase() + hats.name.slice(1)
+})
 
-Hat.hook('beforeValidate',(hats) => {
-    hats.price = parseFloat(Math.round(hats.price * 100) / 100).toFixed(2)
+Hat.hook('beforeValidate', hats => {
+  hats.price = parseFloat(Math.round(hats.price * 100) / 100).toFixed(2)
 })
 
 module.exports = Hat
