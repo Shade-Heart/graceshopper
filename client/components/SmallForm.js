@@ -3,7 +3,7 @@ import React from 'react'
 /**
  * COMPONENT
  */
-const smallForm = () => {
+const SmallForm = () => {
   return (
     <div>
       <div>
@@ -22,4 +22,4 @@ const smallForm = () => {
   )
 }
 
-export default smallForm
+export default SmallForm
