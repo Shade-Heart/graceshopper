@@ -12,11 +12,11 @@ const Hats = db.define('hats', {
       allowNull: false
   },
   price: {
-      type: Sequelize.NUMBER,
+      type: Sequelize.DECIMAL,
       defaultValue: 0.00
   },
   quantity: {
-      type: Sequelize.NUMBER,
+      type: Sequelize.INTEGER,
       defaultValue: 0
   },
   category: {
@@ -28,8 +28,9 @@ const Hats = db.define('hats', {
     defaultValue: "DefaultHat.jpg"
   },
   size: {
-      type: Sequelize.STRING,
-      allowNull: false
+      type: Sequelize.ENUM("S","M","L"),
+      allowNull: false,
+      
   }
 
 })
