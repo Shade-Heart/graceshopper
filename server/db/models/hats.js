@@ -35,11 +35,11 @@ const Hat = db.define('hats', {
 
 })
 
-Hats.hook('beforeValidate',(hats) => {
+Hat.hook('beforeValidate',(hats) => {
     hats.name = hats.name.charAt(0).toUpperCase() + hats.name.slice(1)
   })
 
-Hats.hook('beforeValidate',(hats) => {
+Hat.hook('beforeValidate',(hats) => {
     hats.price = parseFloat(Math.round(hats.price * 100) / 100).toFixed(2)
 })
 
