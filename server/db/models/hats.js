@@ -25,8 +25,7 @@ const Hats = db.define('hats', {
   },
   productImg: {
     type: Sequelize.STRING,
-    defaultValue: ""
-    //TODO: Have a default photo
+    defaultValue: "DefaultHat.jpg"
   },
   size: {
       type: Sequelize.STRING,
@@ -42,9 +41,5 @@ Hats.hook('beforeValidate',(hats) => {
 Hats.hook('beforeValidate',(hats) => {
     hats.price = parseFloat(Math.round(hats.price * 100) / 100).toFixed(2)
 })
-
-// Campuses.hook('beforeValidate',(campuses) => {
-//     campuses.name = campuses.name.charAt(0).toUpperCase() + campuses.name.slice(1)
-//   })
 
 module.exports = Hats
