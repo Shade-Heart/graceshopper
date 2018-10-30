@@ -15,8 +15,8 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
-    validate:{
-      isEmail : true
+    validate: {
+      isEmail: true
     }
   },
   password: {
@@ -77,6 +77,13 @@ const setSaltAndPassword = user => {
     user.password = User.encryptPassword(user.password(), user.salt())
   }
 }
+
+User.hook('beforeValidate', users => {
+  users.firstName =
+    users.firstName.charAt(0).toUpperCase() + users.firstName.slice(1)
+  users.lastName =
+    users.lastName.charAt(0).toUpperCase() + users.lastName.slice(1)
+})
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
