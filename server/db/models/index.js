@@ -18,6 +18,8 @@ const Hat = require('./hats')
 
 Review.belongsTo(User)
 Review.belongsTo(Hat)
+User.hasMany(Hat, {as: 'Owners'})
+Hat.hasMany(Review, {as: 'Reviews'})
 
 module.exports = {
   User,
