@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Hats = db.define('hats', {
+const Hat = db.define('hats', {
   name: {
     type: Sequelize.STRING,
     unique: true,
@@ -43,4 +43,4 @@ Hats.hook('beforeValidate',(hats) => {
     hats.price = parseFloat(Math.round(hats.price * 100) / 100).toFixed(2)
 })
 
-module.exports = Hats
+module.exports = Hat
