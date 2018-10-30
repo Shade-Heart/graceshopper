@@ -12,12 +12,12 @@ const Hats = db.define('hats', {
       allowNull: false
   },
   price: {
-      type: Sequelize.NUMBER
-        //TODO: Add hook or validator for decimals places
+      type: Sequelize.NUMBER,
+      defaultValue: 0.00
   },
   quantity: {
-      type: Sequelize.NUMBER
-      // TODO: Validate Not Empty
+      type: Sequelize.NUMBER,
+      defaultValue: 0
   },
   category: {
       type: Sequelize.STRING,
@@ -34,5 +34,17 @@ const Hats = db.define('hats', {
   }
 
 })
+
+Hats.hook('beforeValidate',(hats) => {
+    hats.name = hats.name.charAt(0).toUpperCase() + hats.name.slice(1)
+  })
+
+Hats.hook('beforeValidate',(hats) => {
+    hats.price = parseFloat(Math.round(hats.price * 100) / 100).toFixed(2)
+})
+
+// Campuses.hook('beforeValidate',(campuses) => {
+//     campuses.name = campuses.name.charAt(0).toUpperCase() + campuses.name.slice(1)
+//   })
 
 module.exports = Hats
