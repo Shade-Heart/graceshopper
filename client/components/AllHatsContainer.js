@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import AllHats from './AllHats'
-import {loadHats} from '../store/allHatsReducer'
+import {loadHats, postHats} from '../store/allHatsReducer'
 
 const mapState = state => {
   return {

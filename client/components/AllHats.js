@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import AddHat from './AddHat'
 
 export default class AllHats extends React.Component {
   componentDidMount() {
@@ -11,6 +12,9 @@ export default class AllHats extends React.Component {
     const allHats = this.props.allHats
     return (
       <div>
+        <div>
+          <AddHat />
+        </div>
         <ul className="list-unstyled">
           {allHats.map(hat => {
             return (
