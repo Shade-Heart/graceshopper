@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import AllHats from './AllHats'
-import {loadHats, postHats} from '../store/allHatsReducer'
+import {loadHats, removeHats} from '../store/allHatsReducer'
 
 const mapState = state => {
   return {
@@ -9,7 +9,8 @@ const mapState = state => {
 }
 const mapDispatch = dispatch => {
   return {
-    loadHats: () => dispatch(loadHats())
+    loadHats: () => dispatch(loadHats()),
+    deleteHat: id => dispatch(removeHats(id))
   }
 }
 

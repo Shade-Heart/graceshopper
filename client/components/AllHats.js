@@ -18,11 +18,17 @@ export default class AllHats extends React.Component {
         <ul className="list-unstyled">
           {allHats.map(hat => {
             return (
-              <li key={hat.id}>
-                {' '}
-                <a href="#" />
-                <Link to={`/Hats/${hat.id}`}>{hat.name} </Link>
-              </li>
+              <div>
+                <li key={hat.id}>
+                  {' '}
+                  <a href="#" />
+                  <Link to={`/Hats/${hat.id}`}>{hat.name} </Link>
+                  <button onClick={() => this.props.deleteHat(hat.id)}>
+                    {' '}
+                    Remove Hat{' '}
+                  </button>
+                </li>
+              </div>
             )
           })}
         </ul>
