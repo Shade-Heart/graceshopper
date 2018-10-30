@@ -1,4 +1,6 @@
 const User = require('./user')
+const Review = require('./reviews')
+const Hat = require('./hats')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -13,6 +15,14 @@ const User = require('./user')
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+
+Review.belongsTo(User)
+Review.belongsTo(Hat)
+User.hasMany(Hat, {as: 'Owners'})
+Hat.hasMany(Review, {as: 'Reviews'})
+
 module.exports = {
-  User
+  User,
+  Hat,
+  Review
 }
