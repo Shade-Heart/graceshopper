@@ -7,18 +7,7 @@ router.get('/', async (req, res, next) => {
     const hats = await Hat.findAll({
       include: [{all: true}]
     })
-    res.json(users)
-  } catch (err) {
-    next(err)
-  }
-})
-
-router.get('/', async (req, res, next) => {
-  try {
-    const hats = await Hat.findAll({
-      include: [{all: true}]
-    })
-    res.json(users)
+    res.json(hats)
   } catch (err) {
     next(err)
   }
