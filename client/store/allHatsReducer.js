@@ -7,6 +7,7 @@ const initialState = {
 //ACTIONS
 export const GOT_HATS = 'GOT_HATS'
 export const ADD_HATS = 'ADD_HATS'
+export const EDIT_HAT = 'EDIT_HAT'
 export const REMOVE_HATS = 'REMOVE_HATS'
 
 //ACTION CREATORS
@@ -21,6 +22,13 @@ export const gotHats = function(hats) {
 export const addHats = function(hats) {
   return {
     type: ADD_HATS,
+    hats
+  }
+}
+
+export const editHat = function(hats) {
+  return {
+    type: EDIT_HAT,
     hats
   }
 }
@@ -43,6 +51,14 @@ export const postHats = hat => {
     dispatch(addHats(data))
   }
 }
+
+export const editedHats = (id, modifiedhat) => {
+  return async dispatch => {
+    const res = await axios.put(`/api/hats/${id}`, modifiedhat)
+    dispatch(editHat(res.data))
+  }
+}
+
 export const removeHats = id => {
   return async dispatch => {
     try {
@@ -66,6 +82,14 @@ export function allHats(state = initialState, action) {
       return {
         ...state,
         allHats: [...state.allHats, action.hats]
+      }
+    case EDIT_HAT:
+      return {
+        ...state,
+        allHats: [
+          ...state.allHats.filter(hat => hat.id !== action.hatId),
+          action.hats
+        ]
       }
     case REMOVE_HATS:
       return {
