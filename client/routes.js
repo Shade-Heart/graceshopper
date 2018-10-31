@@ -6,6 +6,8 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import AllHats from './components/AllHatsContainer'
 import SingleHat from './components/SingleHatContainer'
+import Welcome from './components/Welcome'
+import userHome from './components/user-home'
 
 /**
  * COMPONENT
@@ -21,6 +23,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={Welcome} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/Hats" component={AllHats} />
@@ -28,11 +31,11 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route path="/home" component={userHome} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={Welcome} />
       </Switch>
     )
   }
