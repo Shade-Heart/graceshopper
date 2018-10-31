@@ -77,24 +77,32 @@ class AddHat extends React.Component {
 
             <label>
               Hat Category:
-              <input
-                type="text"
+              <select
                 name="category"
                 onChange={this.handleChange}
                 value={this.state.category}
                 required
-              />
+              >
+                <option value="">--</option>
+                <option value="Cowboy">Cowboy</option>
+                <option value="Santa">Santa</option>
+                <option value="Baseball-Caps">Baseball Caps</option>
+              </select>
             </label>
 
             <label>
               Hat Size:
-              <input
-                type="text"
+              <select
                 name="size"
                 onChange={this.handleChange}
                 value={this.state.size}
                 required
-              />
+              >
+                <option value="">--</option>
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
+              </select>
             </label>
 
             <div id="submitButton">
