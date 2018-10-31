@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Hat} = require('../db/models')
+const {isLoggedIn, isAdmin} = require('./authentication-middleware')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -13,7 +14,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     const newHat = await Hat.create(req.body)
     res.status(201).json(newHat)
@@ -33,7 +34,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAdmin, async (req, res, next) => {
   try {
     const id = req.params.id
     await Hat.destroy({where: {id}})
@@ -43,7 +44,7 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isAdmin, async (req, res, next) => {
   try {
     const id = req.params.id
     const hat = await Hat.findById(id)
