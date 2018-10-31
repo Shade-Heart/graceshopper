@@ -28,7 +28,7 @@ router.get('/:id', async function(req, res, next) {
   }
 })
 
-router.post('/', isAdmin, async function(req, res, next) {
+router.post('/', isLoggedIn, async function(req, res, next) {
   try {
     const review = await Review.create(req.body, {
       include: [{all: true}]

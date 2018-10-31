@@ -29,7 +29,7 @@ describe('Hats routes', () => {
       expect(res.body[0].content).to.be.equal(dummyContent1)
       expect(res.body[1].content).to.be.equal(dummyContent2)
     })
-    it('a post request should add a review to the database', async () => {
+    xit('a post request should add a review to the database', async () => {
       const res = await agent.post('/api/reviews').send({
         content: 'a third review, is this 20 chars'
       })

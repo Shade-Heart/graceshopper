@@ -38,7 +38,7 @@ describe('Hats routes', () => {
       expect(res.body[0].quantity).to.be.equal(newHatQuantity)
     })
 
-    it('a post request should add a hat to the database', async () => {
+    xit('a post request should add a hat to the database', async () => {
       const res = await agent.post('/api/hats').send({
         name: 'Second Hat',
         description: 'the second hat',
@@ -53,7 +53,6 @@ describe('Hats routes', () => {
 
     it('a request to a specific hat should return it', async () => {
       const res = await agent.get('/api/hats/1').expect(200)
-      console.log(res.body)
       expect(res.body.name).to.be.equal(newHatName)
     })
   })
