@@ -18,7 +18,6 @@ export default class AllHats extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     let allHats = this.props.allHats
     if (allHats.length !== 0 && this.state.query !== '') {
       allHats = allHats.filter(hat =>

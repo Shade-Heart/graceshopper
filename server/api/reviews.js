@@ -1,6 +1,9 @@
 const {Review} = require('../db/models')
 
 const router = require('express').Router()
+
+const {isLoggedIn, isAdmin} = require('./authentication-middleware')
+
 module.exports = router
 
 router.get('/', async function(req, res, next) {
@@ -25,7 +28,7 @@ router.get('/:id', async function(req, res, next) {
   }
 })
 
-router.post('/', async function(req, res, next) {
+router.post('/', isAdmin, async function(req, res, next) {
   try {
     const review = await Review.create(req.body, {
       include: [{all: true}]
