@@ -23,9 +23,8 @@ describe('Hats routes', () => {
     })
 
     it('a get request should get all the reviews', async () => {
-      const res = await request(app)
-        .get('/api/reviews')
-        .expect(200)
+      const res = await request(app).get('/api/reviews')
+      expect(200)
       expect(res.body).to.be.an('array')
       expect(res.body[0].content).to.be.equal(dummyContent1)
       expect(res.body[1].content).to.be.equal(dummyContent2)
@@ -39,9 +38,8 @@ describe('Hats routes', () => {
       expect(createdReview.content).to.be.equal('a third review')
     })
     it('a request for a specific review should return it', async () => {
-      const res = await request(app)
-        .get('/api/reviews/1')
-        .expect(200)
+      const res = await request(app).get('/api/reviews/1')
+      expect(200)
       expect(res.body.content).to.be.equal(dummyContent1)
     })
   })
