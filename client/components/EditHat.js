@@ -7,8 +7,6 @@ const defaultState = {
   category: '',
   size: '',
   buttonDisable: true,
-  nameWarning: false,
-  addressWarning: false,
   toggle: false
 }
 class EditHat extends React.Component {
