@@ -6,7 +6,10 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = props => {
-  const displayName = props.firstName !== 'NULL' ? props.firstName : props.email
+  const displayName =
+    props.firstName === 'Null' || props.firstName === 'null'
+      ? props.email
+      : props.firstName
 
   return (
     <div>
