@@ -3,9 +3,12 @@ const db = require('../db')
 
 const Review = db.define('review', {
   content: {
-    type: Sequelize.TEXT,
+    type: Sequelize.STRING,
     validate: {
-      min: [20]
+      len: {
+        min: 20,
+        max: 1000
+      }
     }
   }
 })

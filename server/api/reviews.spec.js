@@ -31,11 +31,13 @@ describe('Hats routes', () => {
     })
     it('a post request should add a review to the database', async () => {
       const res = await agent.post('/api/reviews').send({
-        content: 'a third review'
+        content: 'a third review, is this 20 chars'
       })
       expect(201)
       const createdReview = await Review.findById(res.body.id)
-      expect(createdReview.content).to.be.equal('a third review')
+      expect(createdReview.content).to.be.equal(
+        'a third review, is this 20 chars'
+      )
     })
     it('a request for a specific review should return it', async () => {
       const res = await request(app).get('/api/reviews/1')
