@@ -26,6 +26,8 @@ export default class SingleHat extends Component {
     return (
       <div>
         <h2>{hat.name}</h2>
+        <h3>{hat.category}</h3>
+        <h4>{hat.description}</h4>
         <div>
           <img src={`/${hat.productImg}`} />
         </div>
