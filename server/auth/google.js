@@ -30,15 +30,14 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   const strategy = new GoogleStrategy(
     googleConfig,
     (token, refreshToken, profile, done) => {
-      console.log('PROFILE', profile)
       const googleId = profile.id
-      const firstName = profile.givenName || 'null'
-      const lastName = profile.familyName || 'null'
+      // const firstName = profile.givenName
+      // const lastName = profile.familyName
       const email = profile.emails[0].value
 
       User.findOrCreate({
         where: {googleId},
-        defaults: {firstName, lastName, email}
+        defaults: {email}
       })
         .then(([user]) => done(null, user))
         .catch(done)
