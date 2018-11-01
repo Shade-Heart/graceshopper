@@ -39,3 +39,5 @@ export default class SingleHat extends Component {
     )
   }
 }
+
+// let cart = req.session.cart = [{productId: 4, quantity: 10, price: 2}] || [];
