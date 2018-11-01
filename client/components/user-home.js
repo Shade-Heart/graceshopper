@@ -8,10 +8,7 @@ import Welcome from './Welcome'
  */
 export const UserHome = props => {
   const displayName =
-    props.firstName === 'Null' ||
-    props.firstName === 'null' ||
-    props.firstName === undefined ||
-    props.firstName === null
+    props.firstName === undefined || props.firstName === null
       ? props.email
       : props.firstName
 

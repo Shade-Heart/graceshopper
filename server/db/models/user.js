@@ -5,11 +5,11 @@ const db = require('../db')
 const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true
   },
   email: {
     type: Sequelize.STRING,
@@ -79,10 +79,12 @@ const setSaltAndPassword = user => {
 }
 
 User.hook('beforeValidate', users => {
-  users.firstName =
-    users.firstName.charAt(0).toUpperCase() + users.firstName.slice(1)
-  users.lastName =
-    users.lastName.charAt(0).toUpperCase() + users.lastName.slice(1)
+  if (users.firstName)
+    users.firstName =
+      users.firstName.charAt(0).toUpperCase() + users.firstName.slice(1)
+  if (users.lastName)
+    users.lastName =
+      users.lastName.charAt(0).toUpperCase() + users.lastName.slice(1)
 })
 
 User.beforeCreate(setSaltAndPassword)
