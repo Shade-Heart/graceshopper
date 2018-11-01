@@ -23,6 +23,8 @@ export default class SingleHat extends Component {
 
   render() {
     const hat = this.props.singleHat
+    const defaultUser = this.props.defaultUser
+    const isAdmin = !!(defaultUser !== {} && defaultUser.isAdmin)
     return (
       <div>
         <h2>{hat.name}</h2>
@@ -35,7 +37,11 @@ export default class SingleHat extends Component {
         </div>
         <button onClick={this.hatSpeak}>Click for sound!</button>
         <br />
-        <EditHat hatId={hat.id} renderUpdatedHat={this.renderUpdatedHat} />
+        <EditHat
+          hatId={hat.id}
+          renderUpdatedHat={this.renderUpdatedHat}
+          isAdmin={isAdmin}
+        />
         <Link to="/hats"> Back to List! </Link>
       </div>
     )

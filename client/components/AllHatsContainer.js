@@ -4,7 +4,8 @@ import {loadHats, removeHats} from '../store/allHatsReducer'
 
 const mapState = state => {
   return {
-    allHats: state.allHats.allHats
+    allHats: state.allHats.allHats,
+    defaultUser: state.user
   }
 }
 const mapDispatch = dispatch => {

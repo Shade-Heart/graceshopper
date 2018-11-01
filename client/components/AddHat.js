@@ -45,10 +45,14 @@ class AddHat extends React.Component {
     return (
       <div>
         <div>
-          {this.state.toggle ? (
-            <button onClick={() => this.onClick()}>Hide Add Hat</button>
+          {this.props.isAdmin ? (
+            this.state.toggle ? (
+              <button onClick={() => this.onClick()}>Hide Add Hat</button>
+            ) : (
+              <button onClick={() => this.onClick()}>Add Hat</button>
+            )
           ) : (
-            <button onClick={() => this.onClick()}>Add Hat</button>
+            <h2 />
           )}
         </div>
         {this.state.toggle && (
