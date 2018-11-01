@@ -18,6 +18,8 @@ export default class AllHats extends React.Component {
   }
 
   render() {
+    const defaultUser = this.props.defaultUser
+    const isAdmin = !!(defaultUser !== {} && defaultUser.isAdmin)
     let allHats = this.props.allHats
     if (allHats.length !== 0 && this.state.query !== '') {
       allHats = allHats.filter(hat =>
@@ -27,7 +29,7 @@ export default class AllHats extends React.Component {
     return (
       <div>
         <div>
-          <AddHat />
+          <AddHat isAdmin={isAdmin} />
           <input
             type="text"
             placeholder="Search hats"
@@ -38,17 +40,19 @@ export default class AllHats extends React.Component {
         <ul className="list-unstyled">
           {allHats.map(hat => {
             return (
-              <div>
-                <li key={hat.id}>
-                  {' '}
-                  <a href="#" />
-                  <Link to={`/Hats/${hat.id}`}>{hat.name} </Link>
+              <li key={hat.id}>
+                {' '}
+                <a href="#" />
+                <Link to={`/Hats/${hat.id}`}>{hat.name} </Link>
+                {isAdmin ? (
                   <button onClick={() => this.props.deleteHat(hat.id)}>
                     {' '}
                     Remove Hat{' '}
                   </button>
-                </li>
-              </div>
+                ) : (
+                  <h2 />
+                )}{' '}
+              </li>
             )
           })}
         </ul>

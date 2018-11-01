@@ -12,8 +12,7 @@ const Hat = db.define('hats', {
     allowNull: false
   },
   price: {
-    type: Sequelize.DECIMAL,
-    defaultValue: 0.0
+    type: Sequelize.INTEGER
   },
   quantity: {
     type: Sequelize.INTEGER,
@@ -35,10 +34,6 @@ const Hat = db.define('hats', {
 
 Hat.hook('beforeValidate', hats => {
   hats.name = hats.name.charAt(0).toUpperCase() + hats.name.slice(1)
-})
-
-Hat.hook('beforeValidate', hats => {
-  hats.price = parseFloat(Math.round(hats.price * 100) / 100).toFixed(2)
 })
 
 module.exports = Hat

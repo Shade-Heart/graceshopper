@@ -4,7 +4,8 @@ import {loadHat} from '../store/singleHatReducer'
 
 const mapState = state => {
   return {
-    singleHat: state.singleHat.singleHat
+    singleHat: state.singleHat.singleHat,
+    defaultUser: state.user
   }
 }
 const mapDispatch = dispatch => {

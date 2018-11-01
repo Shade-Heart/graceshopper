@@ -26,7 +26,7 @@ async function seed() {
     Hat.create({
       name: 'SnapBack',
       description: 'A Hipster Kind of Head Wear',
-      price: 229.99,
+      price: 500,
       quantity: 10,
       category: 'Hipster',
       size: 'S'
@@ -34,7 +34,7 @@ async function seed() {
     Hat.create({
       name: 'Cowboy',
       description: 'Get Ready to Round up the Cattle',
-      price: 100.0,
+      price: 1000,
       quantity: 5,
       category: 'Rancher',
       size: 'M'
