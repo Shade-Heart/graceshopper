@@ -4,7 +4,8 @@ import AddHat from './AddHat'
 
 export default class AllHats extends React.Component {
   state = {
-    query: ''
+    query: '',
+    selected: ''
   }
 
   componentDidMount() {
@@ -17,6 +18,12 @@ export default class AllHats extends React.Component {
     })
   }
 
+  handleFilter(event) {
+    this.setState({
+      selected: event.target.value
+    })
+  }
+
   render() {
     const defaultUser = this.props.defaultUser
     const isAdmin = !!(defaultUser !== {} && defaultUser.isAdmin)
@@ -26,6 +33,11 @@ export default class AllHats extends React.Component {
         hat.name.toLowerCase().includes(this.state.query.toLowerCase())
       )
     }
+
+    if (this.state.selected !== '') {
+      allHats = allHats.filter(hat => hat.category === this.state.selected)
+    }
+
     return (
       <div>
         <div>
@@ -37,6 +49,15 @@ export default class AllHats extends React.Component {
             value={this.state.query}
           />
         </div>
+
+        <div>
+          <select onChange={this.handleFilter.bind(this)}>
+            <option value=""> -- </option>
+            <option value="Hipster">Hipster</option>
+            <option value="Rancher">Rancher</option>
+          </select>
+        </div>
+
         <ul className="list-unstyled">
           {allHats.map(hat => {
             return (

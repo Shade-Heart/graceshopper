@@ -8,6 +8,7 @@ import AllHats from './components/AllHatsContainer'
 import SingleHat from './components/SingleHatContainer'
 import Welcome from './components/Welcome'
 import userHome from './components/user-home'
+import AdminPage from './components/AdminPage'
 
 /**
  * COMPONENT
@@ -32,6 +33,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={userHome} />
+            <Route path="/admin" component={AdminPage} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
