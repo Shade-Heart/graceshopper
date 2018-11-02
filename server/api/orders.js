@@ -24,6 +24,22 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.get('/cart/:uid', async (req, res, next) => {
+  try {
+    const userId = req.params.uid
+    const oneOrder = await Order.findAll({
+      where: {
+        userId,
+        status: 'PENDING'
+      },
+      include: [{all: true}]
+    })
+    res.json(oneOrder)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const newOrder = await Order.create(req.body)

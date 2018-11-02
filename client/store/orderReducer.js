@@ -1,12 +1,14 @@
 import axios from 'axios'
 
 const initialState = {
-  allOrders: []
+  allOrders: [],
+  selectedOrder: {}
 }
 
 //ACTIONS
 export const CREATE_ORDER = 'CREATE_ORDER'
-export const GET_ORDERS = 'GET_ORDER'
+export const GET_ORDERS = 'GET_ORDERS'
+export const GET_ORDER = 'GET_ORDER'
 
 //ACTION CREATORS
 export const getOrders = function(order) {
@@ -23,10 +25,27 @@ export const makeOrder = function(order) {
   }
 }
 
+// export const getOrder = function(order) {
+//     return {
+//         type: GET_ORDER,
+//         order
+//     }
+// }
+
 export const gotOrders = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/orders')
     dispatch(getOrders(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const fetchOrder = uid => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/orders/cart/${uid}`)
+    console.log('HELLO', data[0])
+    dispatch(getOrder(data[0]))
   } catch (err) {
     console.error(err)
   }
@@ -55,6 +74,11 @@ export function allHats(state = initialState, action) {
         ...state,
         allOrders: [...state.allOrders, action.order]
       }
+    // case GET_ORDER:
+    //   return {
+    //       ...state,
+    //       selectedOrder: action.order
+    //   }
     default:
       return state
   }

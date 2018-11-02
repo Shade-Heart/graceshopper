@@ -27,7 +27,7 @@ export function singleHat(state = initialState, action) {
         singleHat: action.hat
       }
     default:
-      return initialState // why doesn't it work with initil one?
+      return state // why doesn't it work with initil one?
   }
 }
 

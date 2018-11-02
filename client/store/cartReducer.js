@@ -66,7 +66,7 @@
 //     //     }
 //     // }
 //     default:
-//       return initialState
+//       return state
 //   }
 // }
 

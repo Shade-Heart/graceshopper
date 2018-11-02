@@ -9,9 +9,9 @@ class AddToCart extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.props.gotOrders()
-    console.log('GVHGV', this.props.allOrders)
+    console.log('GVHGV', this.props.selectedOrder)
     // await this.props.defaultUser.id
   }
 
