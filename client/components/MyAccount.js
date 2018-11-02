@@ -3,6 +3,7 @@ import AddHat from './AddHat'
 import EditHat from './EditHat'
 
 import {connect} from 'react-redux'
+import Checkout from './checkout'
 
 export class MyAccount extends React.Component {
   render() {
@@ -12,6 +13,9 @@ export class MyAccount extends React.Component {
     const adminPage = (
       <div>
         <h1> Hello Admin {defaultUser.user.firstName}</h1>
+        <div>
+          <Checkout />
+        </div>
         <div>
           <h3>Admin Controls</h3>
           <AddHat isAdmin={isAdmin} />
