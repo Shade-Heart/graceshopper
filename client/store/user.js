@@ -36,7 +36,8 @@ export const auth = (
   method,
   firstName,
   lastName,
-  isAdmin
+  isAdmin,
+  id
 ) => async dispatch => {
   let res
   try {
@@ -45,7 +46,8 @@ export const auth = (
       password,
       firstName,
       lastName,
-      isAdmin
+      isAdmin,
+      id
     })
   } catch (authError) {
     return dispatch(getUser({error: authError}))

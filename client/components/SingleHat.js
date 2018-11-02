@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import EditHat from './EditHat'
+import AddToCart from './AddToCart'
 
 export default class SingleHat extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.hatSpeak = this.hatSpeak.bind(this)
     this.renderUpdatedHat = this.renderUpdatedHat.bind(this)
   }
@@ -24,6 +25,7 @@ export default class SingleHat extends Component {
   render() {
     const hat = this.props.singleHat
     const defaultUser = this.props.defaultUser
+    // const userId = !!(defaultUser !== {} ? defaultUser.id : 1)// chage this for the session afterwards
     const isAdmin = !!(defaultUser !== {} && defaultUser.isAdmin)
     return (
       <div>
@@ -34,6 +36,7 @@ export default class SingleHat extends Component {
         <h4>{`Size${hat.size}`}</h4>
         <div>
           <img src={`/${hat.productImg}`} />
+          <AddToCart productId={hat.id} />
         </div>
         <button onClick={this.hatSpeak}>Click for sound!</button>
         <br />
@@ -47,3 +50,5 @@ export default class SingleHat extends Component {
     )
   }
 }
+
+// let cart = req.session.cart = [{productId: 4, quantity: 10, price: 2}] || [];

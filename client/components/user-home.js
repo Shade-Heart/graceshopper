@@ -2,22 +2,38 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Welcome from './Welcome'
+import {postOrder, gotOrders, fetchOrder} from './../store/orderReducer'
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const displayName =
-    props.firstName === undefined || props.firstName === null
-      ? props.email
-      : props.firstName
+export class UserHome extends React.Component {
+  async componentDidMount() {
+    await this.props.gotOrders()
+    const userId = this.props.id
+    const userCart = this.props.allOrders.filter(
+      order => order.userId === userId
+    )
+    // console.log("FILTER", this.props.allOrders.filter(order => order.userId === 2))
+    if (userCart.length < 1) {
+      this.props.postOrder(userId)
+    }
+    this.props.fetchOrder(userId)
+  }
 
-  return (
-    <div>
-      <h3>Welcome, {displayName}</h3>
-      <Welcome />
-    </div>
-  )
+  render() {
+    const displayName =
+      this.props.firstName === undefined || this.props.firstName === null
+        ? this.props.email
+        : this.props.firstName
+
+    return (
+      <div>
+        <h3>Welcome, {displayName}</h3>
+        <Welcome />
+      </div>
+    )
+  }
 }
 
 /**
@@ -26,11 +42,22 @@ export const UserHome = props => {
 const mapState = state => {
   return {
     email: state.user.email,
-    firstName: state.user.firstName
+    firstName: state.user.firstName,
+    id: state.user.id,
+    allOrders: state.orderReducer.allOrders
+    // order: state.order
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatch = dispatch => {
+  return {
+    postOrder: id => dispatch(postOrder(id)),
+    gotOrders: () => dispatch(gotOrders()),
+    fetchOrder: uid => dispatch(fetchOrder(uid))
+  }
+}
+
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES
