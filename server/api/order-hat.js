@@ -24,13 +24,13 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-// router.post('/', async (req, res, next) => {
-//     try {
-//       const newOrder = await OrderHat.create(req.body)
-//       res.status(201).json(newOrder)
-//     } catch (err) {
-//       next(err)
-//     }
-//   })
+router.post('/', async (req, res, next) => {
+  try {
+    const newOrder = await OrderHat.create(req.body)
+    res.status(201).json(newOrder)
+  } catch (err) {
+    next(err)
+  }
+})
 
 module.exports = router

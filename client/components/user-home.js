@@ -2,15 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Welcome from './Welcome'
-import {postOrder} from './../store/orderReducer'
+import {postOrder, gotOrders} from './../store/orderReducer'
 
 /**
  * COMPONENT
  */
 export class UserHome extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.gotOrders()
     const userId = this.props.id
-    this.props.postOrder(userId)
+    const userCart = this.props.allOrders.filter(
+      order => order.userId === userId
+    )
+    // console.log("FILTER", this.props.allOrders.filter(order => order.userId === 2))
+    if (userCart.length < 1) {
+      this.props.postOrder(userId)
+    }
   }
 
   render() {
@@ -35,14 +42,16 @@ const mapState = state => {
   return {
     email: state.user.email,
     firstName: state.user.firstName,
-    id: state.user.id
+    id: state.user.id,
+    allOrders: state.orderReducer.allOrders
     // order: state.order
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    postOrder: id => dispatch(postOrder(id))
+    postOrder: id => dispatch(postOrder(id)),
+    gotOrders: () => dispatch(gotOrders())
   }
 }
 
