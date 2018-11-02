@@ -20,24 +20,125 @@ async function seed() {
       lastName: 'Huang',
       email: 'jh@email.com',
       password: '123'
+    }),
+    User.create({
+      firstName: 'Frank',
+      lastName: 'Malafronte',
+      email: 'fm@email.com',
+      password: '123',
+      isAdmin: true
+    }),
+    User.create({
+      firstName: 'Paola',
+      lastName: 'Neira',
+      email: 'pn@email.com',
+      password: '123'
+    }),
+    User.create({
+      firstName: 'Joe ',
+      lastName: 'Shmoe',
+      email: 'js@email.com',
+      password: '123'
     })
   ])
+
   const hats = await Promise.all([
     Hat.create({
-      name: 'SnapBack',
+      name: 'Supreme Snapback',
       description: 'A Hipster Kind of Head Wear',
-      price: 500,
-      quantity: 10,
+      price: 520,
+      quantity: 21,
       category: 'Hipster',
-      size: 'S'
+      size: 'One Size'
     }),
     Hat.create({
-      name: 'Cowboy',
+      name: 'Oversized Cowboy Hat',
       description: 'Get Ready to Round up the Cattle',
-      price: 1000,
+      price: 1050,
+      quantity: 65,
+      category: 'Rancher',
+      size: 'One Size'
+    }),
+    Hat.create({
+      name: 'Outback Australian Oilskin Hat',
+      description:
+        'Protects the head and neck from sun, rain and snow. Waterproof and breathable 100% button with UPF Rating of 50',
+      price: 2152,
       quantity: 5,
       category: 'Rancher',
-      size: 'M'
+      size: 'One Size'
+    }),
+    Hat.create({
+      name: 'Minnetonka Unisex Fold Up Hat',
+      description:
+        'Folds in half from center of front to center back and retains original shape',
+      price: 1402,
+      quantity: 15,
+      category: 'Rancher',
+      size: 'One Size'
+    }),
+    Hat.create({
+      name: 'Western Express Pinch Front Palm Hat',
+      description:
+        "Is it a rancher hat if it doesn't have the world Western in it?",
+      price: 4921,
+      quantity: 24,
+      category: 'Rancher',
+      size: 'One Size'
+    }),
+    Hat.create({
+      name: 'The Fedora of Fedoras',
+      description:
+        'The only way to identify yourself as a Redditor without screaming narwhal',
+      price: 8525,
+      quantity: 25,
+      category: 'Hipster',
+      size: 'One Size'
+    }),
+    Hat.create({
+      name: 'Stetson Sturgis Crushable Wool Hat',
+      description:
+        'Use it for hunting or traversing the dark streets of New York City',
+      price: 9252,
+      quantity: 12,
+      category: 'Hipster',
+      size: 'One Size'
+    }),
+    Hat.create({
+      name: 'Beret',
+      description:
+        'A soft round cap, usually of woollen felt, with a bulging flat crown and tight-fitting brimless headband.',
+      price: 2502,
+      quantity: 12,
+      category: 'Hipster',
+      size: 'One Size'
+    }),
+    Hat.create({
+      name: 'Tricorne',
+      description:
+        'A soft hat with a low crown and broad brim, pinned up on either side of the head and at the back, producing a triangular shape. Worn by Europeans in the 18th century.',
+      price: 5252,
+      quantity: 12,
+      category: 'Classy',
+      size: 'One Size'
+    }),
+    Hat.create({
+      name: 'Top Hat',
+      description:
+        'A tall, flat-crowned, cylindrical hat worn by men in the 19th and early 20th centuries, now worn only with morning dress or evening dress.',
+      price: 4252,
+      quantity: 10,
+      category: 'Classy',
+      size: 'One Size'
+    }),
+    Hat.create({
+      name: 'Derby Hat',
+      description:
+        "A hard felt hat with a rounded crown created in 1850 by Lock's of St James's, the hatters to Thomas Coke, 2nd Earl of Leicester, for his servants.",
+      price: 6935,
+      quantity: 4,
+      category: 'Classy',
+      size: 'One Size'
     })
   ])
 
