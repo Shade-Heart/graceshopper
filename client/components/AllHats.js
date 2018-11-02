@@ -5,7 +5,7 @@ import AddHat from './AddHat'
 export default class AllHats extends React.Component {
   state = {
     query: '',
-    selected: ' '
+    selected: ''
   }
 
   componentDidMount() {
