@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import EditHat from './EditHat'
+import {connect} from 'react-redux'
+import {loadHat} from '../store/singleHatReducer'
 
-export default class SingleHat extends Component {
+export class SingleHat extends Component {
   constructor() {
     super()
     this.hatSpeak = this.hatSpeak.bind(this)
@@ -47,3 +49,17 @@ export default class SingleHat extends Component {
     )
   }
 }
+
+const mapState = state => {
+  return {
+    singleHat: state.singleHat.singleHat,
+    defaultUser: state.user
+  }
+}
+const mapDispatch = dispatch => {
+  return {
+    loadHat: id => dispatch(loadHat(id))
+  }
+}
+
+export default connect(mapState, mapDispatch)(SingleHat)
