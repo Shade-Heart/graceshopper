@@ -9,7 +9,7 @@ export class AdminPage extends React.Component {
     const defaultUser = this.props.defaultUser
     const isAdmin = !!(defaultUser !== {} && defaultUser.user.isAdmin)
     console.log(this.props)
-    return (
+    return isAdmin ? (
       <div>
         <h3>
           {' '}
@@ -18,6 +18,8 @@ export class AdminPage extends React.Component {
         <AddHat isAdmin={isAdmin} />
         <EditHat isAdmin={isAdmin} />
       </div>
+    ) : (
+      <h1>NO ADMIN ACCESS</h1>
     )
   }
 }
