@@ -57,6 +57,7 @@ export class AllHats extends React.Component {
             <option value=""> -- </option>
             <option value="Hipster">Hipster</option>
             <option value="Rancher">Rancher</option>
+            <option value="Classy">Classy</option>
           </select>
         </div>
 

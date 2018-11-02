@@ -27,7 +27,8 @@ const Hat = db.define('hats', {
     defaultValue: './DefaultHat.jpg'
   },
   size: {
-    type: Sequelize.ENUM('S', 'M', 'L'),
+    type: Sequelize.STRING,
+    defaultValue: 'One Size',
     allowNull: false
   }
 })
