@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import EditHat from './EditHat'
 import AddToCart from './AddToCart'
-import {loadHat} from '../store/allHatsReducer'
+import {loadHat} from '../store/singleHatReducer'
+import {connect} from 'react-redux'
 
 export class SingleHat extends Component {
   constructor(props) {
