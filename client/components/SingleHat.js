@@ -2,8 +2,10 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import EditHat from './EditHat'
 import AddToCart from './AddToCart'
+import {loadHat} from '../store/singleHatReducer'
+import {connect} from 'react-redux'
 
-export default class SingleHat extends Component {
+export class SingleHat extends Component {
   constructor(props) {
     super(props)
     this.hatSpeak = this.hatSpeak.bind(this)
@@ -51,4 +53,16 @@ export default class SingleHat extends Component {
   }
 }
 
-// let cart = req.session.cart = [{productId: 4, quantity: 10, price: 2}] || [];
+const mapState = state => {
+  return {
+    singleHat: state.singleHat.singleHat,
+    defaultUser: state.user
+  }
+}
+const mapDispatch = dispatch => {
+  return {
+    loadHat: id => dispatch(loadHat(id))
+  }
+}
+
+export default connect(mapState, mapDispatch)(SingleHat)

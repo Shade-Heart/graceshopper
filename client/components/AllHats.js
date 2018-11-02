@@ -1,8 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import AddHat from './AddHat'
+import {connect} from 'react-redux'
+import {loadHats, removeHats} from '../store/allHatsReducer'
 
-export default class AllHats extends React.Component {
+export class AllHats extends React.Component {
   state = {
     query: '',
     selected: ''
@@ -81,3 +83,18 @@ export default class AllHats extends React.Component {
     )
   }
 }
+
+const mapState = state => {
+  return {
+    allHats: state.allHats.allHats,
+    defaultUser: state.user
+  }
+}
+const mapDispatch = dispatch => {
+  return {
+    loadHats: () => dispatch(loadHats()),
+    deleteHat: id => dispatch(removeHats(id))
+  }
+}
+
+export default connect(mapState, mapDispatch)(AllHats)
