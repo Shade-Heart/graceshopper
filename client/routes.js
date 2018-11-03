@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
+import Cart from './components/Cart'
 import {me} from './store'
 import AllHats from './components/AllHats'
 import SingleHat from './components/SingleHat'
@@ -28,6 +29,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/Hats" component={AllHats} />
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/Hats/:id" component={SingleHat} />
         {isLoggedIn && (
           <Switch>

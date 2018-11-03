@@ -24,6 +24,21 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.get('/lineItems/:orderId', async (req, res, next) => {
+  try {
+    const orderId = req.params.orderId
+    const oneOrder = await OrderHat.findAll({
+      where: {
+        orderId
+      },
+      include: [{all: true}]
+    })
+    res.json(oneOrder)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const newOrder = await OrderHat.create(req.body)
