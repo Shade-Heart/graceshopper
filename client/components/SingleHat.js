@@ -4,7 +4,6 @@ import EditHat from './EditHat'
 import AddToCart from './AddToCart'
 import {loadHat} from '../store/singleHatReducer'
 import {connect} from 'react-redux'
-import Checkout from './checkout'
 
 export class SingleHat extends Component {
   constructor(props) {
@@ -57,7 +56,8 @@ export class SingleHat extends Component {
 const mapState = state => {
   return {
     singleHat: state.singleHat.singleHat,
-    defaultUser: state.user
+    defaultUser: state.user,
+    allOrders: state.orderReducer.allOrders
   }
 }
 const mapDispatch = dispatch => {
