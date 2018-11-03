@@ -30,17 +30,33 @@ class Cart extends React.Component {
       allProductIds.includes(product.id)
     )
 
+    let totalQuantity = 0
+    this.props.lineItems.forEach(function(item) {
+      totalQuantity += item.quantity
+    })
+
+    let subTotal = 0
+
+    cartArr.map(item => {
+      subTotal +=
+        item.price *
+        this.props.lineItems.filter(product => product.hatId === item.id)[0]
+          .quantity /
+        100
+    })
+
     return (
       <div>
         <h1>Cart</h1>
-        <h1>Items in Cart: </h1>
+        <h2>
+          Items in Cart: {totalQuantity} SubTotal: ${subTotal}
+        </h2>
         {cartArr.length ? (
           cartArr.map(item => {
             return (
               <div key={item.id}>
-                <img src={item.productImg} />
-                {item.name} ${item.price / 100}
-                quantity:{' '}
+                <img className="cartImages" src={item.productImg} />
+                {item.name} ${item.price / 100} quantity:{' '}
                 {
                   this.props.lineItems.filter(
                     product => product.hatId === item.id
