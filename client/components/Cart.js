@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {gotItems} from '../store/cartReducer'
 import {loadHats} from '../store/allHatsReducer'
 import {me} from '../store/user'
+import {Link} from 'react-router-dom'
 
 class Cart extends React.Component {
   constructor(props) {
@@ -52,19 +53,43 @@ class Cart extends React.Component {
           Items in Cart: {totalQuantity} SubTotal: ${subTotal}
         </h2>
         {cartArr.length ? (
-          cartArr.map(item => {
-            return (
-              <div key={item.id}>
-                <img className="cartImages" src={item.productImg} />
-                {item.name} ${item.price / 100} quantity:{' '}
-                {
-                  this.props.lineItems.filter(
-                    product => product.hatId === item.id
-                  )[0].quantity
-                }
-              </div>
-            )
-          })
+          <table>
+            <thead>
+              <tr>
+                <th />
+                <th />
+                <th>Price</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {cartArr.map(item => {
+                return (
+                  <tr key={item.id}>
+                    <td>
+                      <Link to={`/Hats/${item.id}`}>
+                        <img className="cartImages" src={item.productImg} />
+                      </Link>
+                    </td>
+                    <td>
+                      <Link to={`/Hats/${item.id}`}>{item.name}</Link>
+                    </td>
+
+                    <td>${item.price / 100} </td>
+                    <td>
+                      {' '}
+                      {
+                        this.props.lineItems.filter(
+                          product => product.hatId === item.id
+                        )[0].quantity
+                      }
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
         ) : (
           <h2>Empty</h2>
         )}
