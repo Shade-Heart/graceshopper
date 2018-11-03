@@ -71,4 +71,18 @@ router.put('/lineItems/:hatId', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const itemId = req.params.id
+    await OrderHat.destroy({
+      where: {
+        id: itemId
+      }
+    })
+    res.end()
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

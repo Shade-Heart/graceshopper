@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {gotItems} from '../store/cartReducer'
 import {loadHats} from '../store/allHatsReducer'
+import {removeItem} from '../store/lineItem'
 import {me} from '../store/user'
 import {Link} from 'react-router-dom'
 
@@ -50,7 +51,7 @@ class Cart extends React.Component {
       <div>
         <h1>Cart</h1>
         <h2>
-          Items in Cart: {totalQuantity} SubTotal: ${subTotal}
+          Items in Cart: {totalQuantity} SubTotal: ${subTotal.toFixed(2)}
         </h2>
         {cartArr.length ? (
           <table>
@@ -76,7 +77,7 @@ class Cart extends React.Component {
                       <Link to={`/Hats/${item.id}`}>{item.name}</Link>
                     </td>
 
-                    <td>${item.price / 100} </td>
+                    <td>${(item.price / 100).toFixed(2)} </td>
                     <td>
                       {' '}
                       {
@@ -111,7 +112,8 @@ const mapDispatch = dispatch => {
   return {
     gotItems: id => dispatch(gotItems(id)),
     loadHats: () => dispatch(loadHats()),
-    getUser: () => dispatch(me())
+    getUser: () => dispatch(me()),
+    removeItem: id => dispatch(removeItem(id))
   }
 }
 
