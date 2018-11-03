@@ -2,41 +2,51 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {gotItems} from '../store/cartReducer'
 import {loadHats} from '../store/allHatsReducer'
+import {me} from '../store/user'
 
 class Cart extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.onClick = this.onClick.bind(this)
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.getUser()
     const userId = this.props.defaultUser.id
+    console.log('USERID', userId)
     this.props.gotItems(userId)
     this.props.loadHats()
   }
+
   onClick() {}
 
   render() {
-    const allProducts = []
+    const allProductIds = []
     this.props.lineItems.forEach(function(element) {
-      allProducts.push(element.hatId)
+      allProductIds.push(element.hatId)
     })
 
     const cartArr = this.props.allHats.filter(product =>
-      allProducts.includes(product.id)
+      allProductIds.includes(product.id)
     )
-    console.log('HATSTORE', cartArr)
 
     return (
       <div>
         <h1>Cart</h1>
+        <h1>Items in Cart: </h1>
         {cartArr.length ? (
           cartArr.map(item => {
             return (
-              <li key={item.id}>
-                {/* <img src={item.productImg} /> */}
+              <div key={item.id}>
+                <img src={item.productImg} />
                 {item.name} ${item.price / 100}
-              </li>
+                quantity:{' '}
+                {
+                  this.props.lineItems.filter(
+                    product => product.hatId === item.id
+                  )[0].quantity
+                }
+              </div>
             )
           })
         ) : (
@@ -59,7 +69,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     gotItems: id => dispatch(gotItems(id)),
-    loadHats: () => dispatch(loadHats())
+    loadHats: () => dispatch(loadHats()),
+    getUser: () => dispatch(me())
   }
 }
 
