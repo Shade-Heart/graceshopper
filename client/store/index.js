@@ -7,13 +7,15 @@ import singleHat from './singleHatReducer'
 import allHats from './allHatsReducer'
 import orderReducer from './orderReducer'
 import lineItem from './lineItem'
+import cartReducer from './cartReducer'
 
 const reducer = combineReducers({
   user,
   allHats,
   singleHat,
   orderReducer,
-  lineItem
+  lineItem,
+  cartReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

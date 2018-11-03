@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Welcome from './Welcome'
-import {postOrder, gotOrders, fetchOrder} from './../store/orderReducer'
+import {postOrder, gotOrders} from './../store/orderReducer'
 
 /**
  * COMPONENT
@@ -18,7 +18,7 @@ export class UserHome extends React.Component {
     if (userCart.length < 1) {
       this.props.postOrder(userId)
     }
-    this.props.fetchOrder(userId)
+    // this.props.fetchOrder(userId)
   }
 
   render() {
@@ -52,8 +52,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     postOrder: id => dispatch(postOrder(id)),
-    gotOrders: () => dispatch(gotOrders()),
-    fetchOrder: uid => dispatch(fetchOrder(uid))
+    gotOrders: () => dispatch(gotOrders())
+    // fetchOrder: uid => dispatch(fetchOrder(uid))
   }
 }
 

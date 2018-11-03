@@ -9,7 +9,7 @@ const OrderHat = db.define('order-hats', {
   },
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
+    defaultValue: 1
   }
 })
 

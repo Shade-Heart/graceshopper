@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {postItem} from './../store/lineItem'
+import {postItem, fetchItems, updateItem} from './../store/lineItem'
 import {gotOrders} from './../store/orderReducer'
+import {Link} from 'react-router-dom'
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -11,13 +12,14 @@ class AddToCart extends React.Component {
 
   componentDidMount() {
     this.props.gotOrders()
-    console.log('GVHGV', this.props.selectedOrder)
+    this.props.fetchItems()
+
     // await this.props.defaultUser.id
   }
 
   handleClick() {
     const userId = this.props.defaultUser.id
-    console.log('PROPS', this.props)
+    // console.log('PROPS', this.props)
 
     // console.log('LUEGFLUBVSKEHB:VOIWHO:IFE',this.props)
     const userCart = this.props.allOrders.filter(
@@ -28,15 +30,24 @@ class AddToCart extends React.Component {
     // dispatches function to create line item
     const orderId = userCart[0].id
     // this.props.postItem(orderId, productId)
-    const {productId} = this.props
+    const {productId, allLineItems} = this.props
 
-    this.props.postItem(orderId, productId)
+    const itemExists = allLineItems.filter(item => item.hatId === productId)
+    console.log('========+++++++', itemExists.length)
+
+    if (itemExists.length) {
+      this.props.updateItem(productId)
+    } else {
+      this.props.postItem(orderId, productId)
+    }
   }
 
   render() {
     return (
       <div>
-        <button onClick={() => this.handleClick()}>Add To Cart</button>
+        <Link to="/cart" onClick={() => this.handleClick()}>
+          Add To Cart{' '}
+        </Link>
       </div>
     )
   }
@@ -45,14 +56,17 @@ class AddToCart extends React.Component {
 const mapState = state => {
   return {
     allOrders: state.orderReducer.allOrders,
-    defaultUser: state.user
+    defaultUser: state.user,
+    allLineItems: state.lineItem.allLineItems
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     postItem: (orderId, productId) => dispatch(postItem(orderId, productId)),
-    gotOrders: () => dispatch(gotOrders())
+    gotOrders: () => dispatch(gotOrders()),
+    fetchItems: () => dispatch(fetchItems()),
+    updateItem: productId => dispatch(updateItem(productId))
   }
 }
 export default connect(mapState, mapDispatch)(AddToCart)

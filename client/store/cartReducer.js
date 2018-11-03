@@ -1,25 +1,24 @@
-// let intialState;
-// if (localStorage.getItem('cart') {
-//     initialState = JSON.parse(localStorage.getItem('cart'));
-// } else {
-//     initialState = [{}];
-// }
+import axios from 'axios'
 
-// //ACTIONS
-// export const GET_CART = 'GET_CART'
+const initialState = {
+  lineItems: []
+}
+
+//ACTIONS
+export const GET_CART = 'GET_CART'
 // export const ADD_CART = 'ADD_HATS'
 // export const UPDATE_CART = 'UPDATE_CART'
 // export const REMOVE_CART = 'REMOVE_HATS'
 // export const CLEAR_CART = 'CLEAR_CART'
 
-// //ACTION CREATORS
+//ACTION CREATORS
 
-// // export const getCart = function(items) {
-// //   return {
-// //     type: GET_CART,
-// //     items
-// //   }
-// // }
+export const getCart = function(items) {
+  return {
+    type: GET_CART,
+    items
+  }
+}
 
 // export const addCart = function(item) {
 //     return {
@@ -28,46 +27,61 @@
 //     }
 //   }
 
-// //REDUCERS
-// export function allHats(state = initialState, action) {
-//   switch (action.type) {
-//     // case GET_CART: {
-//     //     return {
-//     //         ...state,
+//REDUCERS
 
-//     //     }
-//     // }
-//     case ADD_CART: {
-//         if ()
-//         localStorage.setItem('cart', initialState)
-//         action.item
+export const gotItems = orderId => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/order-hat/lineItems/${orderId}`)
+    dispatch(getCart(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
 
-//         return {
-//             ...state,
+// case GET_CART: {
+//     return {
+//         ...state,
 
-//         }
 //     }
-//     // case REMOVE_CART: {
-//     //     return {
-//     //         ...state,
-
-//     //     }
-//     // }
-//     // case UPDATE_CART: {
-//     //     return {
-//     //         ...state,
-
-//     //     }
-//     // }
-//     // case CLEAR_CART: {
-//     //     return {
-//     //         ...state,
-
-//     //     }
-//     // }
-//     default:
-//       return state
-//   }
 // }
+// case ADD_CART: {
+//     if ()
+//     localStorage.setItem('cart', initialState)
+//     action.item
 
-// export default allHats
+//     return {
+//         ...state,
+
+//     }
+// }
+// case REMOVE_CART: {
+//     return {
+//         ...state,
+
+//     }
+// }
+// case UPDATE_CART: {
+//     return {
+//         ...state,
+
+//     }
+// }
+// case CLEAR_CART: {
+//     return {
+//         ...state,
+
+//     }
+// }
+export function cartReducer(state = initialState, action) {
+  switch (action.type) {
+    case GET_CART:
+      return {
+        ...state,
+        lineItems: action.items
+      }
+    default:
+      return state
+  }
+}
+
+export default cartReducer

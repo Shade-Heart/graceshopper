@@ -41,15 +41,15 @@ export const gotOrders = () => async dispatch => {
   }
 }
 
-export const fetchOrder = uid => async dispatch => {
-  try {
-    const {data} = await axios.get(`/api/orders/cart/${uid}`)
-    console.log('HELLO', data[0])
-    dispatch(getOrder(data[0]))
-  } catch (err) {
-    console.error(err)
-  }
-}
+// export const fetchOrder = uid => async dispatch => {
+//   try {
+//     const {data} = await axios.get(`/api/orders/cart/${uid}`)
+//     console.log('HELLO', data[0])
+//     dispatch(getOrder(data[0]))
+//   } catch (err) {
+//     console.error(err)
+//   }
+// }
 
 export const postOrder = uid => async dispatch => {
   try {
@@ -61,7 +61,7 @@ export const postOrder = uid => async dispatch => {
 }
 
 //REDUCERS
-export function allHats(state = initialState, action) {
+export function orderReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ORDERS: {
       return {
@@ -84,4 +84,4 @@ export function allHats(state = initialState, action) {
   }
 }
 
-export default allHats
+export default orderReducer

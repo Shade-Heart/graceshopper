@@ -38,7 +38,7 @@ export class SingleHat extends Component {
         <h4>{`$${hat.price / 100}`}</h4>
         <h4>{`Size${hat.size}`}</h4>
         <div>
-          <img src={`/${hat.productImg}`} />
+          <img className="singleProductImage" src={`/${hat.productImg}`} />
           <AddToCart productId={hat.id} />
         </div>
         <button onClick={this.hatSpeak}>Click for sound!</button>

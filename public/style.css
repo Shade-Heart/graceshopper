@@ -19,3 +19,15 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.cartImages {
+  max-width: 50px;
+  max-height: 50px;
+  margin: auto;
+}
+
+.singleProductImage {
+  max-width: 100px;
+  max-height: 100px;
+  margin: auto;
+}
