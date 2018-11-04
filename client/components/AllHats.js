@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import AddHat from './AddHat'
 import {connect} from 'react-redux'
 import {loadHats, removeHats} from '../store/allHatsReducer'
+import {Dropdown, Icon, Input, Image} from 'semantic-ui-react'
 
 export class AllHats extends React.Component {
   state = {
@@ -14,15 +15,15 @@ export class AllHats extends React.Component {
     this.props.loadHats()
   }
 
-  handleChange(event) {
+  handleChange(event, data) {
     this.setState({
-      query: event.target.value
+      query: data.value
     })
   }
 
-  handleFilter(event) {
+  handleFilter(event, data) {
     this.setState({
-      selected: event.target.value
+      selected: data.value
     })
   }
 
@@ -40,33 +41,43 @@ export class AllHats extends React.Component {
       allHats = allHats.filter(hat => hat.category === this.state.selected)
     }
 
+    const options = [
+      {key: 1, text: 'Hipster', value: 'Hipster'},
+      {key: 2, text: 'Rancher', value: 'Rancher'},
+      {key: 3, text: 'Classy', value: 'Classy'}
+    ]
+
     return (
       <div>
         <div>
           <AddHat isAdmin={isAdmin} />
-          <input
-            type="text"
-            placeholder="Search hats"
+          <Input
+            icon={<Icon name="search" inverted circular link />}
+            placeholder="Search Hats"
             onChange={this.handleChange.bind(this)}
-            value={this.state.query}
           />
         </div>
 
         <div>
-          <select onChange={this.handleFilter.bind(this)}>
-            <option value=""> -- </option>
-            <option value="Hipster">Hipster</option>
-            <option value="Rancher">Rancher</option>
-            <option value="Classy">Classy</option>
-          </select>
+          <Dropdown
+            clearable
+            options={options}
+            selection
+            onChange={this.handleFilter.bind(this)}
+            placeholder="Filter by Hats"
+          />
         </div>
 
         <ul className="list-unstyled">
           {allHats.map(hat => {
             return (
               <li key={hat.id}>
-                {' '}
-                <a href="#" />
+                <Image
+                  src="./DefaultHat.jpg"
+                  size="medium"
+                  bordered
+                  href={`/Hats/${hat.id}`}
+                />
                 <Link to={`/Hats/${hat.id}`}>{hat.name} </Link>
                 {isAdmin ? (
                   <button onClick={() => this.props.deleteHat(hat.id)}>
@@ -75,7 +86,7 @@ export class AllHats extends React.Component {
                   </button>
                 ) : (
                   <h2 />
-                )}{' '}
+                )}
               </li>
             )
           })}
