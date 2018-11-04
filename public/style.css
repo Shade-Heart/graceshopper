@@ -24,11 +24,7 @@ form div {
   max-width: 200px;
 }
 
-.singleProductImage {
-  max-width: 100px;
-  max-height: 100px;
-  margin: auto;
-}
+/*CART ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .cartHeaderPrice {
   width: 15%;
@@ -422,4 +418,125 @@ form div {
     font-size: 30px;
     margin-top: 20px;
   }
+}
+
+/* END CART ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.singleProductImage {
+  max-width: 80%;
+  margin: auto;
+}
+
+.container {
+  width: 70%;
+  background-color: #fff;
+  margin: 2em auto;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px rgb(94, 94, 94);
+}
+
+.right {
+  order: 1;
+  padding: 1em;
+  height: 360px;
+}
+
+#description {
+  padding: 2px;
+  margin-bottom: 3%;
+}
+
+.left {
+  padding: 1em;
+}
+
+.sizes {
+  display: flex;
+}
+
+.size,
+#add,
+#like {
+  padding: 12px;
+  border: 1px solid #abccf9;
+}
+
+.focus {
+  background-color: #82ca9c;
+  color: #fff;
+  border: 1px solid gray;
+  width: 77px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  margin-bottom: auto;
+}
+.focus:hover {
+  background-color: #6faf87;
+  color: #fff;
+}
+
+footer {
+  text-align: center;
+}
+
+#heart {
+  color: purple;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 320px;
+    flex-direction: column;
+  }
+
+  .right {
+    height: 100%;
+  }
+
+  #description > p {
+    display: none;
+  }
+
+  .size {
+    padding: 7px;
+    margin: 0 auto;
+  }
+}
+
+.right h1 {
+  color: #82ca9c;
+  margin: auto;
+}
+.right a {
+  color: #82ca9c;
+}
+.right h4 {
+  color: #82ca9c;
+}
+
+/* END SINGLE ITEM PAGE ~~~~~~~~~~~~~~~~`*/
+
+.adminOp {
+  position: relative;
+  margin-left: 43%;
+}
+
+.backToList {
+  display: flex;
+}
+.backToList p {
+  font-size: 20px;
+  border: 1px solid gray;
+  background-color: #82ca9c;
+  color: #fff;
+  border-radius: 3px;
+  margin: auto;
+
+  transition: all 0.3s ease;
+}
+
+.backToList p:hover {
+  background-color: #6faf87;
+  color: #fff;
 }
