@@ -31,23 +31,38 @@ export class SingleHat extends Component {
     const isAdmin = !!(defaultUser !== {} && defaultUser.isAdmin)
     return (
       <div>
-        <h2>{hat.name}</h2>
-        <h3>{hat.category}</h3>
-        <h4>{hat.description}</h4>
-        <h4>{`$${hat.price / 100}`}</h4>
-        <h4>{`Size${hat.size}`}</h4>
-        <div>
-          <img className="singleProductImage" src={`/${hat.productImg}`} />
-          <AddToCart productId={hat.id} />
+        <main className="container">
+          <aside className="right">
+            <a>{hat.category}</a>
+            <h1>{hat.name}</h1>
+            <h4>{`Size: ${hat.size}`}</h4>
+            <h2>${(hat.price / 100).toFixed(2)}</h2>
+            <article id="description">
+              <p>{hat.description}</p>
+            </article>
+            {/* <button onClick={this.hatSpeak}>Click for sound!</button> */}
+            {/* <br /> */}
+            <div>
+              <AddToCart productId={hat.id} />
+            </div>
+          </aside>
+          <aside className="left">
+            <div className="backToList">
+              <Link to="/hats">
+                <p>Back to All Products</p>
+              </Link>
+            </div>
+            <img className="singleProductImage" src={`/${hat.productImg}`} />
+          </aside>
+        </main>
+        <div className="adminOp">
+          <h1>Admin Options:</h1>
+          <EditHat
+            hatId={hat.id}
+            renderUpdatedHat={this.renderUpdatedHat}
+            isAdmin={isAdmin}
+          />
         </div>
-        <button onClick={this.hatSpeak}>Click for sound!</button>
-        <br />
-        <EditHat
-          hatId={hat.id}
-          renderUpdatedHat={this.renderUpdatedHat}
-          isAdmin={isAdmin}
-        />
-        <Link to="/hats"> Back to List! </Link>
       </div>
     )
   }
@@ -67,3 +82,25 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(SingleHat)
+
+{
+  /* <div>
+        <h2>{hat.name}</h2>
+        <h3>{hat.category}</h3>
+        <h4>{hat.description}</h4>
+        <h4>{`$${hat.price / 100}`}</h4>
+        <h4>{`Size${hat.size}`}</h4>
+        <div>
+          <img className="singleProductImage" src={`/${hat.productImg}`} />
+          <AddToCart productId={hat.id} />
+        </div>
+        <button onClick={this.hatSpeak}>Click for sound!</button>
+        <br />
+        <EditHat
+          hatId={hat.id}
+          renderUpdatedHat={this.renderUpdatedHat}
+          isAdmin={isAdmin}
+        />
+        <Link to="/hats"> Back to List! </Link>
+      </div> */
+}

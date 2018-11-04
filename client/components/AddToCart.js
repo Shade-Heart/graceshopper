@@ -48,7 +48,7 @@ class AddToCart extends React.Component {
     return (
       <div>
         <Link to="/cart" onClick={() => this.handleClick()}>
-          Add To Cart{' '}
+          <p className="focus">Add To Cart </p>
         </Link>
       </div>
     )
