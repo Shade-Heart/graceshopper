@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {Label} from 'semantic-ui-react'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, firstName}) => (
   <div>
     <h1>GRACE SHOPPER</h1>
     <nav>
@@ -13,11 +14,21 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/hats">All Products</Link>
-          <Link to="/myaccount">My Account</Link>
+          <Link to="/myaccount">
+            <Label as="a" image>
+              <i className="user secret icon" />
+              {`${firstName}'s Account`}
+            </Label>
+          </Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          <Link to="/cart">Cart</Link>
+          <Link to="/cart">
+            <Label image color="white">
+              <i className="shopping cart icon" />
+              Cart
+            </Label>
+          </Link>
         </div>
       ) : (
         <div>
@@ -37,7 +48,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    firstName: state.user.firstName
   }
 }
 
