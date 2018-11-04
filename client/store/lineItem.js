@@ -9,6 +9,7 @@ const initialState = {
 export const GET_ITEMS = 'GET_ITEMS'
 export const CREATE_LINE_ITEM = 'CREATE_LINE_ITEM'
 export const EDIT_ITEM = 'EDIT_ITEM'
+export const DELETE_ITEM = 'DELETE_ITEM'
 
 //ACTION CREATORS
 export const getItems = function(items) {
@@ -32,6 +33,13 @@ export const editItem = function(item) {
   }
 }
 
+export const deleteItem = function(id) {
+  return {
+    type: DELETE_ITEM,
+    id
+  }
+}
+
 //Thunks
 export const fetchItems = () => async dispatch => {
   try {
@@ -42,9 +50,11 @@ export const fetchItems = () => async dispatch => {
   }
 }
 
-export const updateItem = hatId => async dispatch => {
+export const updateItem = (orderId, hatId) => async dispatch => {
   try {
-    const {data} = await axios.put(`/api/order-hat/lineItems/${hatId}`)
+    const {data} = await axios.put(
+      `/api/order-hat/lineItems/${orderId}/${hatId}`
+    )
     dispatch(editItem(data))
   } catch (err) {
     console.error(err)
@@ -60,6 +70,17 @@ export const postItem = (orderId, productId) => async dispatch => {
     dispatch(makeItem(data))
   } catch (err) {
     console.error(err)
+  }
+}
+
+export const removeItem = id => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/order-hat/lineItems/${id}`)
+      dispatch(deleteItem(id))
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
@@ -89,6 +110,13 @@ export function lineItem(state = initialState, action) {
         ]
       }
     }
+    case DELETE_ITEM:
+      return {
+        ...state,
+        allLineItems: [
+          ...state.allLineItems.filter(item => item.id !== action.id)
+        ]
+      }
 
     default:
       return state

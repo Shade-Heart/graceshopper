@@ -32,11 +32,13 @@ class AddToCart extends React.Component {
     // this.props.postItem(orderId, productId)
     const {productId, allLineItems} = this.props
 
-    const itemExists = allLineItems.filter(item => item.hatId === productId)
+    const itemExists = allLineItems.filter(
+      item => item.hatId === productId && item.orderId === orderId
+    )
     console.log('========+++++++', itemExists.length)
 
     if (itemExists.length) {
-      this.props.updateItem(productId)
+      this.props.updateItem(orderId, productId)
     } else {
       this.props.postItem(orderId, productId)
     }
@@ -66,7 +68,7 @@ const mapDispatch = dispatch => {
     postItem: (orderId, productId) => dispatch(postItem(orderId, productId)),
     gotOrders: () => dispatch(gotOrders()),
     fetchItems: () => dispatch(fetchItems()),
-    updateItem: productId => dispatch(updateItem(productId))
+    updateItem: (orderId, productId) => dispatch(updateItem(orderId, productId))
   }
 }
 export default connect(mapState, mapDispatch)(AddToCart)
