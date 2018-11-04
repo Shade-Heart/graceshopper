@@ -50,9 +50,11 @@ export const fetchItems = () => async dispatch => {
   }
 }
 
-export const updateItem = hatId => async dispatch => {
+export const updateItem = (orderId, hatId) => async dispatch => {
   try {
-    const {data} = await axios.put(`/api/order-hat/lineItems/${hatId}`)
+    const {data} = await axios.put(
+      `/api/order-hat/lineItems/${orderId}/${hatId}`
+    )
     dispatch(editItem(data))
   } catch (err) {
     console.error(err)
@@ -74,7 +76,7 @@ export const postItem = (orderId, productId) => async dispatch => {
 export const removeItem = id => {
   return async dispatch => {
     try {
-      await axios.delete(`/api/order-hat/${id}`)
+      await axios.delete(`/api/order-hat/lineItems/${id}`)
       dispatch(deleteItem(id))
     } catch (err) {
       console.error(err)

@@ -58,10 +58,11 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.put('/lineItems/:hatId', async (req, res, next) => {
+router.put('/lineItems/:orderId/:hatId', async (req, res, next) => {
   try {
-    const id = req.params.hatId
-    const lineItem = await OrderHat.findOne({where: {hatId: id}})
+    const orderId = req.params.orderId
+    const hatId = req.params.hatId
+    const lineItem = await OrderHat.findOne({where: {orderId, hatId}})
     const modifiedItem = await lineItem.update({
       quantity: lineItem.quantity + 1
     })
@@ -71,15 +72,11 @@ router.put('/lineItems/:hatId', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/lineItems/:id', async (req, res, next) => {
   try {
-    const itemId = req.params.id
-    await OrderHat.destroy({
-      where: {
-        id: itemId
-      }
-    })
-    res.end()
+    const id = req.params.id
+    await OrderHat.destroy({where: {id}})
+    res.status(204).end()
   } catch (err) {
     next(err)
   }
