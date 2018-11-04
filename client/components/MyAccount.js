@@ -1,9 +1,7 @@
 import React from 'react'
 import AddHat from './AddHat'
 import EditHat from './EditHat'
-
 import {connect} from 'react-redux'
-import Checkout from './checkout'
 
 export class MyAccount extends React.Component {
   render() {
