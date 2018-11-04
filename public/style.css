@@ -34,6 +34,7 @@ form div {
   width: 15%;
   float: left;
   margin-left: 10%;
+  margin-bottom: 2%;
   position: relative;
 }
 .cartHeaderQty {
