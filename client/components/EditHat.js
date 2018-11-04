@@ -63,11 +63,14 @@ class EditHat extends React.Component {
       <div>
         <div>
           {this.props.isAdmin ? (
-            this.state.toggle ? (
-              <button onClick={() => this.onClick()}>Hide Edit Hat</button>
-            ) : (
-              <button onClick={() => this.onClick()}>Edit Hat</button>
-            )
+            <div>
+              <h1>Admin Options:</h1>
+              {this.state.toggle ? (
+                <button onClick={() => this.onClick()}>Hide Edit Hat</button>
+              ) : (
+                <button onClick={() => this.onClick()}>Edit Hat</button>
+              )}
+            </div>
           ) : (
             <h2 />
           )}

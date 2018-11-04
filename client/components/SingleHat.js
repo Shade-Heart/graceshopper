@@ -56,7 +56,6 @@ export class SingleHat extends Component {
           </aside>
         </main>
         <div className="adminOp">
-          <h1>Admin Options:</h1>
           <EditHat
             hatId={hat.id}
             renderUpdatedHat={this.renderUpdatedHat}

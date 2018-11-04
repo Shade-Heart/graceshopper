@@ -110,7 +110,13 @@ class Cart extends React.Component {
                     <div className="total">
                       <div className="center">
                         <span>
-                          ${(item.price * item.quantity / 100).toFixed(2)}
+                          ${(
+                            item.price *
+                            this.props.lineItems.filter(
+                              product => product.hatId === item.id
+                            )[0].quantity /
+                            100
+                          ).toFixed(2)}
                         </span>
                       </div>
                     </div>
