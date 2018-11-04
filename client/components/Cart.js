@@ -47,6 +47,8 @@ class Cart extends React.Component {
         100
     })
 
+    console.log(cartArr)
+
     return (
       <div>
         {/* <h1>Cart</h1>
@@ -115,7 +117,17 @@ class Cart extends React.Component {
 
                     <div className="remove">
                       <div className="center">
-                        <button onClick={() => this.props.removeItem(item.id)}>
+                        <button
+                          onClick={() =>
+                            this.props.removeItem(
+                              this.props.lineItems.filter(
+                                product =>
+                                  product.hatId === item.id &&
+                                  product.orderId === this.props.defaultUser.id
+                              )[0].id
+                            )
+                          }
+                        >
                           Remove
                         </button>
                       </div>
