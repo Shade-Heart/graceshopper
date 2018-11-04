@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import AddHat from './AddHat'
 import {connect} from 'react-redux'
 import {loadHats, removeHats} from '../store/allHatsReducer'
-import {Dropdown, Icon, Input, Image} from 'semantic-ui-react'
+import {Dropdown, Icon, Input, Image, Container} from 'semantic-ui-react'
 
 export class AllHats extends React.Component {
   state = {
@@ -49,48 +49,66 @@ export class AllHats extends React.Component {
 
     return (
       <div>
-        <div>
-          <AddHat isAdmin={isAdmin} />
-          <Input
-            icon={<Icon name="search" inverted circular link />}
-            placeholder="Search Hats"
-            onChange={this.handleChange.bind(this)}
-          />
+        {/* Filter By Name and Category */}
+        <div className="ui segment">
+          <div className="ui two column very relaxed grid">
+            <div className="column center aligned">
+              <Input
+                icon={<Icon name="search" inverted circular link />}
+                placeholder="Name"
+                onChange={this.handleChange.bind(this)}
+                centered="true"
+              />
+            </div>
+            <div className="column center aligned">
+              <Dropdown
+                clearable
+                options={options}
+                selection
+                onChange={this.handleFilter.bind(this)}
+                placeholder="Category"
+              />
+            </div>
+          </div>
+          <div className="ui vertical divider">FILTER BY:</div>
         </div>
 
-        <div>
-          <Dropdown
-            clearable
-            options={options}
-            selection
-            onChange={this.handleFilter.bind(this)}
-            placeholder="Filter by Hats"
-          />
-        </div>
+        <AddHat isAdmin={isAdmin} />
 
-        <ul className="list-unstyled">
-          {allHats.map(hat => {
-            return (
-              <li key={hat.id}>
-                <Image
-                  src="./DefaultHat.jpg"
-                  size="medium"
-                  bordered
-                  href={`/Hats/${hat.id}`}
-                />
-                <Link to={`/Hats/${hat.id}`}>{hat.name} </Link>
-                {isAdmin ? (
-                  <button onClick={() => this.props.deleteHat(hat.id)}>
-                    {' '}
-                    Remove Hat{' '}
-                  </button>
-                ) : (
-                  <h2 />
-                )}
-              </li>
-            )
-          })}
-        </ul>
+        {/* Product Listings */}
+        <Container>
+          <div className="ui four column grid">
+            {allHats.map(hat => {
+              return (
+                <div className="column" key={hat.id}>
+                  <div className="ui segment">
+                    <Image
+                      src="./DefaultHat.jpg"
+                      size="large"
+                      centered
+                      href={`/Hats/${hat.id}`}
+                    />
+                    <Link to={`/Hats/${hat.id}`}>
+                      {' '}
+                      <p className="ui segment center blue inverted">
+                        {hat.name}
+                      </p>{' '}
+                    </Link>
+
+                    {isAdmin ? (
+                      <button onClick={() => this.props.deleteHat(hat.id)}>
+                        {' '}
+                        Remove Hat{' '}
+                      </button>
+                    ) : (
+                      <h2 />
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </Container>
       </div>
     )
   }
