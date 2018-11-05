@@ -1,16 +1,20 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const Welcome = () => {
+const Welcome = props => {
+  const {user} = props
   return (
     <div id="welcome" className="welcome">
       <main>
-        <h1>Welcome to the Mad Hatter</h1>
-        <Link to="/hats"> Browse our products </Link>
-
-        <img
-          src="https://cdn.shopify.com/s/files/1/0157/8796/t/6/assets/slideshow_2.jpg?7715386223625535679"
-        />
+        <header>
+          <section className="hero">
+            <div className="innerWrapper">
+              <h2>Welcome {user}</h2>
+              <h1>Welcome to the Mad Hatter</h1>
+              <h3>Find the right look for you!</h3>
+            </div>
+          </section>
+        </header>
       </main>
     </div>
   )

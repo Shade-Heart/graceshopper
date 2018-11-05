@@ -17,7 +17,7 @@ class Cart extends React.Component {
     await this.props.gotOrders()
     const userId = this.props.defaultUser.id
     const orderId = this.props.allOrders.filter(order => order.oid === userId)
-
+    console.log(orderId[0])
     this.props.gotItems(orderId[0].id)
     this.props.loadHats()
   }
@@ -173,7 +173,57 @@ class Cart extends React.Component {
             </div>
           </div>
         ) : (
-          <h2>Empty</h2>
+          <div id="wrap">
+            <div id="cart_layout_2">
+              <h1>Shopping Cart</h1>
+
+              <div className="item">
+                <h3>Item</h3>
+                <h1>Cart is Empty</h1>
+                <p>
+                  Looks like you have no items in your shopping cart. Click{' '}
+                  <Link to="/hats">here</Link> to continue shopping.
+                </p>
+              </div>
+
+              <div className="cartHeaderPrice">
+                <h3>Price</h3>
+              </div>
+
+              <div className="cartHeaderQty">
+                <h3>Qty</h3>
+              </div>
+
+              <div className="cartHeaderTotal">
+                <h3>Total</h3>
+              </div>
+            </div>
+            <div className="complete_cart">
+              <div className="update">
+                <div className="coupon">
+                  <h2>Coupon Code</h2>
+                  <input type="text" />
+                  <a className="button" href="#">
+                    Update Cart
+                  </a>
+                </div>
+              </div>
+              <div className="checkout">
+                <div className="subtotal">
+                  <h2>Subtotal ({totalQuantity} items):</h2>
+                  <span className="finalprice">${subTotal.toFixed(2)}</span>
+                  <a className="refresh">
+                    <i className="fa fa-refresh" />
+                  </a>
+                </div>
+                <div className="complete">
+                  <a className="button" href="#">
+                    Checkout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     )

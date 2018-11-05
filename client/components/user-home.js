@@ -30,8 +30,7 @@ export class UserHome extends React.Component {
 
     return (
       <div>
-        <h3>Welcome, {displayName}</h3>
-        <Welcome />
+        <Welcome user={displayName} />
       </div>
     )
   }
