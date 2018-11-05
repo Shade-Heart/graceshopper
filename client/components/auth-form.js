@@ -11,7 +11,7 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="bgPages">
       <form onSubmit={handleSubmit} name={name}>
         {name === 'signup' ? (
           <div>

@@ -48,7 +48,7 @@ export class AllHats extends React.Component {
     ]
 
     return (
-      <div>
+      <div className="bgPages">
         {/* Filter By Name and Category */}
         <div className="ui segment">
           <div className="ui two column very relaxed grid">
