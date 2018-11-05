@@ -7,7 +7,7 @@ class Checkout extends Component {
     return (
       <StripeProvider apiKey="pk_test_BWjSNljxQTKKCw09tzm2oSvw">
         <div className="example">
-          <h1>React Stripe Elements Example</h1>
+          <h2> Thanks for shopping at Mad Hatters! </h2>
           <Elements>
             <CheckoutForm />
           </Elements>

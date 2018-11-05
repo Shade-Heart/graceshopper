@@ -17,16 +17,17 @@ class CheckoutForm extends Component {
     })
     if (response.ok) {
       this.setState({complete: true})
+      // Set transaction to completed in database and redirect to homepage
     } else {
-      alert('transaction failed')
+      alert('Transaction failed, please try again!')
     }
   }
 
   render() {
-    if (this.state.complete) return <h1> Purchase Complete! ></h1>
+    if (this.state.complete) return <h1> Purchase Complete! </h1>
     return (
       <div className="checkout">
-        <p>Would you like to complete the purchase?</p>
+        <p>Please enter your payment information to complete your purchase: </p>
         <CardElement />
         <button onClick={this.submit}>Send</button>
       </div>
@@ -35,3 +36,15 @@ class CheckoutForm extends Component {
 }
 
 export default injectStripe(CheckoutForm)
+
+// const mapState = state => {
+//   return {
+//   }
+// }
+
+// const mapDispatch = dispatch => {
+//   return {
+//   }
+// }
+
+// export default connect(mapState, mapDispatch)(Navbar)
