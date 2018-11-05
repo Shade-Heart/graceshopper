@@ -9,7 +9,7 @@ export class MyAccount extends React.Component {
     const isAdmin = !!(defaultUser !== {} && defaultUser.user.isAdmin)
 
     const adminPage = (
-      <div>
+      <div className="bgPages">
         <h1> Hello Admin {defaultUser.user.firstName}</h1>
         <div>
           <h3>Admin Controls</h3>

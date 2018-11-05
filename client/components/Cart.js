@@ -53,7 +53,7 @@ class Cart extends React.Component {
     // console.log('LINE-ITEMS!!!!!!!!!!',this.props.lineItems)
 
     return (
-      <div>
+      <div className="bgPages">
         {/* <h1>Cart</h1>
         <h2>
           Items in Cart: {totalQuantity} SubTotal: ${subTotal.toFixed(2)}

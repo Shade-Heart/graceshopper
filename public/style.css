@@ -22,6 +22,17 @@ form div {
 
 .cartImages {
   max-width: 200px;
+  border-radius: 5px;
+  border: 1px solid rgb(54, 54, 54);
+}
+
+.bgPages {
+  /* background-color: #82ca9c; */
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzlSEjD6m8gcad0R1bUtNVuG0V_lfWaM1yWzCCvmqZXsWawOKbFQ);
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 160vh;
+  max-height: 100%;
 }
 
 /*CART ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -105,6 +116,8 @@ form div {
 }
 .product_details span {
   margin-right: 10px;
+  font-size: 30px;
+  text-align: center;
 }
 .cart_details h3 {
   border-bottom: 2px solid #aaa;
