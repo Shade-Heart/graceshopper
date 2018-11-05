@@ -17,8 +17,8 @@ export class UserHome extends React.Component {
     // console.log("FILTER", this.props.allOrders.filter(order => order.userId === 2))
     if (userCart.length < 1) {
       this.props.postOrder(userId)
+      this.props.editOrder(userId)
     }
-    this.props.editOrder(userId)
     // this.props.fetchOrder(userId)
   }
 
@@ -30,8 +30,7 @@ export class UserHome extends React.Component {
 
     return (
       <div>
-        <h3>Welcome, {displayName}</h3>
-        <Welcome />
+        <Welcome user={displayName} />
       </div>
     )
   }

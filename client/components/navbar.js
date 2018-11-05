@@ -7,12 +7,12 @@ import {Label} from 'semantic-ui-react'
 
 const Navbar = ({handleClick, isLoggedIn, firstName}) => (
   <div>
-    <h1>GRACE SHOPPER</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
+    {/* <h1>GRACE SHOPPER</h1> */}
+    {/* <nav> */}
+    {isLoggedIn ? (
+      <div>
+        {/* The navbar will show these links after you log in */}
+        {/* <Link to="/home">Home</Link>
           <Link to="/hats">All Products</Link>
           <Link to="/myaccount">
             <Label as="a" image>
@@ -28,19 +28,70 @@ const Navbar = ({handleClick, isLoggedIn, firstName}) => (
               <i className="shopping cart icon" />
               Cart
             </Label>
-          </Link>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/hats">All Products</Link>
-        </div>
-      )}
-    </nav>
-    <hr />
+          </Link> */}
+        <header>
+          <div className="navWrapper" id="home">
+            <div className=" clearfix">
+              <h2 className="companyName">Mad Hatter</h2>
+              <nav className="mainNav clearfix">
+                <ul>
+                  <li>
+                    <Link to="/home">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/hats">All Products</Link>
+                  </li>
+                  <li>
+                    <Link to="/myaccount">Account</Link>
+                    {/* <Link to="/myaccount">{`${firstName}'s Account`}</Link> */}
+                  </li>
+                  <li>
+                    <a href="#" onClick={handleClick}>
+                      Logout
+                    </a>
+                  </li>
+                  <li>
+                    <Link to="/cart">Cart</Link>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </header>
+      </div>
+    ) : (
+      <div>
+        {/* The navbar will show these links before you log in */}
+
+        <header>
+          <div className="navWrapper" id="home">
+            <div className=" clearfix">
+              <h2 className="companyName">Mad Hatter</h2>
+              <nav className="mainNav clearfix">
+                <ul>
+                  <li>
+                    <Link to="/home">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/hats">All Products</Link>
+                  </li>
+                  <li>
+                    <Link to="/login">Login</Link>
+                  </li>
+                  <li>
+                    <Link to="/signup">Sign Up</Link>
+                  </li>
+                  <li>
+                    <a>Not a cart</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </header>
+      </div>
+    )}
+    {/* </nav> */}
   </div>
 )
 
