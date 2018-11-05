@@ -31,7 +31,7 @@ export class SingleHat extends Component {
     const isAdmin = !!(defaultUser !== {} && defaultUser.isAdmin)
     return (
       <div>
-        <main className="container">
+        <main className="singleHatContainer">
           <aside className="right">
             <a>{hat.category}</a>
             <h1>{hat.name}</h1>

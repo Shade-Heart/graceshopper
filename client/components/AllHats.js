@@ -83,7 +83,7 @@ export class AllHats extends React.Component {
                 <div className="column" key={hat.id}>
                   <div className="ui segment">
                     <Image
-                      src="./DefaultHat.jpg"
+                      src={`/${hat.productImg}`}
                       size="large"
                       centered
                       href={`/Hats/${hat.id}`}
