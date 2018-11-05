@@ -3,6 +3,15 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import SmallForm from './SmallForm'
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Segment
+} from 'semantic-ui-react'
 
 /**
  * COMPONENT
@@ -33,7 +42,9 @@ const AuthForm = props => {
         )}
         <SmallForm />
         <div>
-          <button type="submit">{displayName}</button>
+          <Button type="submit" color="blue" fluid size="large">
+            {displayName}
+          </Button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
