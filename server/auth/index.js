@@ -39,10 +39,6 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
-  // let cart = req.session.cart = [{productId: 4, quantity: 10, price: 2}] || [];
-  // console.log('--------------------------------',req.user.id)
-  // console.log('--------------------------------',req.session.passport.user)
-  console.log(req.user.id)
   res.json(req.user)
 })
 
