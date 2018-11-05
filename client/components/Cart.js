@@ -165,7 +165,7 @@ class Cart extends React.Component {
                   </a>
                 </div>
                 <div className="complete">
-                  <a className="button" href="#">
+                  <a className="button" href="/checkout">
                     Checkout
                   </a>
                 </div>

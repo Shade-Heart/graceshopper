@@ -10,6 +10,7 @@ import SingleHat from './components/SingleHat'
 import Welcome from './components/Welcome'
 import userHome from './components/user-home'
 import MyAccount from './components/MyAccount'
+import Checkout from './components/Checkout'
 
 /**
  * COMPONENT
@@ -36,6 +37,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={userHome} />
             <Route path="/myaccount" component={MyAccount} />
+            <Route path="/checkout" component={Checkout} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
