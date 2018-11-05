@@ -16,7 +16,6 @@ export class MyAccount extends React.Component {
           <h3>Admin Controls</h3>
           <AddHat isAdmin={isAdmin} />
           <EditHat isAdmin={isAdmin} />
-          <AddUser isAdmin={isAdmin} />
         </div>
       </div>
     )
