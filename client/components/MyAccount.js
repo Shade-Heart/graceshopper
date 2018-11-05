@@ -2,6 +2,7 @@ import React from 'react'
 import AddHat from './AddHat'
 import EditHat from './EditHat'
 import {connect} from 'react-redux'
+import AddUser from './addUser'
 
 export class MyAccount extends React.Component {
   render() {
@@ -15,6 +16,7 @@ export class MyAccount extends React.Component {
           <h3>Admin Controls</h3>
           <AddHat isAdmin={isAdmin} />
           <EditHat isAdmin={isAdmin} />
+          <AddUser isAdmin={isAdmin} />
         </div>
       </div>
     )

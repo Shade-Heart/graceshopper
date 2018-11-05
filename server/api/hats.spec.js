@@ -38,7 +38,7 @@ describe('Hats routes', () => {
       expect(res.body[0].quantity).to.be.equal(newHatQuantity)
     })
 
-    xit('a post request should add a hat to the database', async () => {
+    it('a post request should return unauthorized', async () => {
       const res = await agent.post('/api/hats').send({
         name: 'Second Hat',
         description: 'the second hat',
@@ -46,9 +46,7 @@ describe('Hats routes', () => {
         size: newHatSize,
         quantity: newHatQuantity
       })
-      expect(201)
-      const createdHat = await Hat.findById(res.body.id)
-      expect(createdHat.name).to.be.equal('Second Hat')
+      expect(401)
     })
 
     it('a request to a specific hat should return it', async () => {
