@@ -16,9 +16,7 @@ class Cart extends React.Component {
     await this.props.getUser()
     await this.props.gotOrders()
     const userId = this.props.defaultUser.id
-    const orderId = await this.props.allOrders.filter(
-      order => order.oid === userId
-    )
+    const orderId = this.props.allOrders.filter(order => order.oid === userId)
 
     this.props.gotItems(orderId[0].id)
     this.props.loadHats()
@@ -48,6 +46,8 @@ class Cart extends React.Component {
           .quantity /
         100
     })
+    const userId = this.props.defaultUser.id
+    const orderId = this.props.allOrders.filter(order => order.oid === userId)
 
     // console.log('CARRTT!!!!!!!!!!',cartArr)
     // console.log('LINE-ITEMS!!!!!!!!!!',this.props.lineItems)
@@ -132,7 +132,7 @@ class Cart extends React.Component {
                               this.props.lineItems.filter(
                                 product =>
                                   product.hatId === item.id &&
-                                  product.orderId === this.props.defaultUser.id
+                                  product.orderId === orderId[0].id
                               )[0].id
                             )
                           }
