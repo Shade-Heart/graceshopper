@@ -15,7 +15,7 @@ const Navbar = ({handleClick, isLoggedIn, firstName}) => (
           <Link to="/home">Home</Link>
           <Link to="/hats">All Products</Link>
           <Link to="/myaccount">
-            <Label as="a" image>
+            <Label image>
               <i className="user secret icon" />
               {`${firstName}'s Account`}
             </Label>
@@ -24,7 +24,7 @@ const Navbar = ({handleClick, isLoggedIn, firstName}) => (
             Logout
           </a>
           <Link to="/cart">
-            <Label image color="white">
+            <Label image>
               <i className="shopping cart icon" />
               Cart
             </Label>
