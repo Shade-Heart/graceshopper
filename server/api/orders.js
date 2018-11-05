@@ -25,6 +25,21 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.get('/oid/:oid', async (req, res, next) => {
+  try {
+    const oid = req.params.oid
+    const oneOrder = await Order.findAll({
+      where: {
+        oid
+      },
+      include: [{all: true}]
+    })
+    res.json(oneOrder)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/cart/:uid', async (req, res, next) => {
   try {
     const userId = req.params.uid
@@ -54,6 +69,19 @@ router.post('/charge', async (req, res, next) => {
   try {
     let {status} = await stripe.charges.create(req.body)
     res.status(201).json({status})
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/:uid', async (req, res, next) => {
+  try {
+    const userId = req.params.uid
+    const order = await Order.findOne({where: {userId}})
+    const modifiedItem = await order.update({
+      oid: userId
+    })
+    res.json(modifiedItem)
   } catch (err) {
     next(err)
   }

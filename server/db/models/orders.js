@@ -2,6 +2,10 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Order = db.define('order', {
+  oid: {
+    type: Sequelize.INTEGER,
+    defaultValue: null
+  },
   status: {
     type: Sequelize.ENUM('PENDING', 'COMPLETED'),
     defaultValue: 'PENDING'

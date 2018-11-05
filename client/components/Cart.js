@@ -3,24 +3,26 @@ import {connect} from 'react-redux'
 import {gotItems} from '../store/cartReducer'
 import {loadHats} from '../store/allHatsReducer'
 import {removeItem} from '../store/lineItem'
+import {gotOrders} from '../store/orderReducer'
 import {me} from '../store/user'
 import {Link} from 'react-router-dom'
 
 class Cart extends React.Component {
   constructor(props) {
     super(props)
-    this.onClick = this.onClick.bind(this)
   }
 
   async componentDidMount() {
     await this.props.getUser()
+    await this.props.gotOrders()
     const userId = this.props.defaultUser.id
-    console.log('USERID', userId)
-    this.props.gotItems(userId)
+    const orderId = await this.props.allOrders.filter(
+      order => order.oid === userId
+    )
+
+    this.props.gotItems(orderId[0].id)
     this.props.loadHats()
   }
-
-  onClick() {}
 
   render() {
     const allProductIds = []
@@ -47,7 +49,8 @@ class Cart extends React.Component {
         100
     })
 
-    console.log(cartArr)
+    // console.log('CARRTT!!!!!!!!!!',cartArr)
+    // console.log('LINE-ITEMS!!!!!!!!!!',this.props.lineItems)
 
     return (
       <div>
@@ -110,7 +113,13 @@ class Cart extends React.Component {
                     <div className="total">
                       <div className="center">
                         <span>
-                          ${(item.price * item.quantity / 100).toFixed(2)}
+                          ${(
+                            item.price *
+                            this.props.lineItems.filter(
+                              product => product.hatId === item.id
+                            )[0].quantity /
+                            100
+                          ).toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -185,7 +194,8 @@ const mapDispatch = dispatch => {
     gotItems: id => dispatch(gotItems(id)),
     loadHats: () => dispatch(loadHats()),
     getUser: () => dispatch(me()),
-    removeItem: id => dispatch(removeItem(id))
+    removeItem: id => dispatch(removeItem(id)),
+    gotOrders: oid => dispatch(gotOrders(oid))
   }
 }
 

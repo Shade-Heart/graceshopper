@@ -35,7 +35,6 @@ class AddToCart extends React.Component {
     const itemExists = allLineItems.filter(
       item => item.hatId === productId && item.orderId === orderId
     )
-    console.log('========+++++++', itemExists.length)
 
     if (itemExists.length) {
       this.props.updateItem(orderId, productId)
