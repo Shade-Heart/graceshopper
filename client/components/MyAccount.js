@@ -2,7 +2,6 @@ import React from 'react'
 import AddHat from './AddHat'
 import EditHat from './EditHat'
 import {connect} from 'react-redux'
-import AddUser from './addUser'
 
 export class MyAccount extends React.Component {
   render() {
