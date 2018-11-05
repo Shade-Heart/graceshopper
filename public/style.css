@@ -84,6 +84,15 @@ form div {
   width: 30%;
   float: left;
 }
+.item h1 {
+  width: 100%;
+  float: left;
+}
+.item p {
+  width: 80%;
+  float: left;
+  padding-bottom: 12%;
+}
 .product_image img {
   max-height: 200px;
 }
@@ -693,3 +702,8 @@ header {
     padding: 25px 2%;
   }
 }
+
+.LinkColors {
+  color: #fff;
+}
+/* END NAVBAR/HOMEPAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
