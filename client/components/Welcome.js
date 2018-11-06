@@ -21,9 +21,7 @@ export class Welcome extends React.Component {
 
   render() {
     const defaultUser = this.props.defaultUser
-
     const isLoggedin = Object.keys(defaultUser).length !== 0
-
     const name = isLoggedin ? this.props.defaultUser.firstName : ''
 
     return (

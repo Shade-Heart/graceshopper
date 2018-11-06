@@ -23,11 +23,9 @@ class Cart extends React.Component {
     }
     await this.props.gotOrders()
     const userId = this.props.defaultUser.id
-    console.log(userId)
     const orderId = this.props.allOrders.filter(
       order => order.oid === userId && order.status === 'PENDING'
     )
-    console.log(orderId)
     this.props.gotItems(orderId[0].id)
     this.props.loadHats()
   }
@@ -62,7 +60,6 @@ class Cart extends React.Component {
     const userId = this.props.defaultUser.id
     const orderId = this.props.allOrders.filter(order => order.oid === userId)
     const cartOrder = orderId.filter(order => order.status === 'PENDING')[0].id
-    console.log('@@@@@@@@@@@@@@', cartOrder)
     return (
       <div className="bgPages">
         {cartArr.length ? (

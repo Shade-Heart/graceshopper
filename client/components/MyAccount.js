@@ -10,7 +10,6 @@ export class MyAccount extends React.Component {
   }
 
   render() {
-    console.log(this.props.allOrders)
     const defaultUser = this.props.defaultUser
     const isAdmin = !!(defaultUser !== {} && defaultUser.user.isAdmin)
 
@@ -64,8 +63,6 @@ export class MyAccount extends React.Component {
         })}
       </div>
     )
-
-    console.log(userOrders)
 
     return isAdmin ? adminPage : userPage
   }

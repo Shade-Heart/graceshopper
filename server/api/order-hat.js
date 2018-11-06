@@ -2,7 +2,7 @@ const router = require('express').Router()
 const {OrderHat} = require('../db/models')
 const {isLoggedIn, isAdmin} = require('./authentication-middleware')
 
-router.get('/', isLoggedIn, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const hats = await OrderHat.findAll({
       include: [{all: true}]
@@ -13,7 +13,7 @@ router.get('/', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.get('/:id', isLoggedIn, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const oneOrder = await OrderHat.findById(req.params.id, {
       include: [{all: true}]
@@ -24,7 +24,7 @@ router.get('/:id', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.get('/lineItem/:hatId', isLoggedIn, async (req, res, next) => {
+router.get('/lineItem/:hatId', async (req, res, next) => {
   try {
     const hatId = req.params.hatId
     const lineItem = await OrderHat.findOne({where: {hatId}})
@@ -34,7 +34,7 @@ router.get('/lineItem/:hatId', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.get('/lineItems/:orderId', isLoggedIn, async (req, res, next) => {
+router.get('/lineItems/:orderId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
     const oneOrder = await OrderHat.findAll({
@@ -49,7 +49,7 @@ router.get('/lineItems/:orderId', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.post('/', isLoggedIn, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const newOrder = await OrderHat.create(req.body)
     res.status(201).json(newOrder)
@@ -58,7 +58,7 @@ router.post('/', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.put('/lineItems/:orderId/:hatId', isLoggedIn, async (req, res, next) => {
+router.put('/lineItems/:orderId/:hatId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
     const hatId = req.params.hatId
@@ -72,7 +72,7 @@ router.put('/lineItems/:orderId/:hatId', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.delete('/lineItems/:id', isLoggedIn, async (req, res, next) => {
+router.delete('/lineItems/:id', async (req, res, next) => {
   try {
     const id = req.params.id
     await OrderHat.destroy({where: {id}})

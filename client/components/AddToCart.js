@@ -17,19 +17,13 @@ class AddToCart extends React.Component {
   }
 
   handleClick() {
-    console.log('PROPS', this.props)
-
     const userId = this.props.defaultUser.id
-
-    // console.log('LUEGFLUBVSKEHB:VOIWHO:IFE',this.props)
     const userCart = this.props.allOrders.filter(
       order => order.userId === userId && order.status === 'PENDING'
     )
-    // console.log('+++++++++++++++++', session)
 
     // dispatches function to create line item
     const orderId = userCart[0].id
-    // this.props.postItem(orderId, productId)
     const {productId, allLineItems} = this.props
 
     const itemExists = allLineItems.filter(
