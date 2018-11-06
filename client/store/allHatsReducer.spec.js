@@ -84,7 +84,6 @@ describe('Reducer', () => {
 
       expect(newState.allHats.length).to.be.equal(prevState.allHats.length - 1)
       expect(prevState.allHats).to.be.deep.equal([hats])
-      // expect(newState.allHats.find(hat => hat.id === 10)).to.be.undefined
     })
   })
 
