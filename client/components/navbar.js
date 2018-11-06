@@ -41,7 +41,7 @@ const Navbar = ({handleClick, isLoggedIn, firstName}) => (
                     {/* <Link to="/myaccount">{`${firstName}'s Account`}</Link> */}
                   </li>
                   <li>
-                    <a href="#" onClick={handleClick}>
+                    <a href="/login" onClick={handleClick}>
                       Logout
                     </a>
                   </li>
