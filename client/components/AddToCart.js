@@ -23,7 +23,7 @@ class AddToCart extends React.Component {
 
     // console.log('LUEGFLUBVSKEHB:VOIWHO:IFE',this.props)
     const userCart = this.props.allOrders.filter(
-      order => order.userId === userId
+      order => order.userId === userId && order.status === 'PENDING'
     )
     // console.log('+++++++++++++++++', session)
 

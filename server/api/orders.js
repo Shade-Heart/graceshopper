@@ -68,6 +68,7 @@ router.post('/', async (req, res, next) => {
 router.post('/charge', async (req, res, next) => {
   try {
     let {status} = await stripe.charges.create(req.body)
+    console.log('___________++++++++++++!!!!!!!!!!!!', req.body)
     res.status(201).json({status})
   } catch (err) {
     next(err)
@@ -86,4 +87,21 @@ router.put('/:uid', async (req, res, next) => {
     next(err)
   }
 })
+
+router.put('/status/:orderId/:subtotal', async (req, res, next) => {
+  try {
+    const orderId = req.params.orderId
+    const subtotal = req.params.subtotal
+    const order = await Order.findById(orderId)
+    const modifiedItem = await order.update({
+      status: 'COMPLETED',
+      total: subtotal
+      // total: req.subTotal
+    })
+    res.json(modifiedItem)
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router
