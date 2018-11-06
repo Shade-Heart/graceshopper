@@ -65,6 +65,15 @@ export const postOrder = uid => async dispatch => {
   }
 }
 
+export const postOrderGuest = uid => async dispatch => {
+  try {
+    const {data} = await axios.post('/api/orders', {userId: uid, oid: uid})
+    dispatch(makeOrder(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const updateOrder = userId => async dispatch => {
   try {
     const {data} = await axios.put(`/api/orders/${userId}`)

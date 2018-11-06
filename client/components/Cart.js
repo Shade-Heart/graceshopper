@@ -18,7 +18,9 @@ class Cart extends React.Component {
   }
 
   async componentDidMount() {
-    await this.props.getUser()
+    if (this.props.defaultUser.email) {
+      await this.props.getUser()
+    }
     await this.props.gotOrders()
     const userId = this.props.defaultUser.id
     console.log(userId)
@@ -59,18 +61,10 @@ class Cart extends React.Component {
     })
     const userId = this.props.defaultUser.id
     const orderId = this.props.allOrders.filter(order => order.oid === userId)
-
-    // console.log('CARRTT!!!!!!!!!!',cartArr)
-    // console.log('LINE-ITEMS!!!!!!!!!!',this.props.lineItems)
-
     const cartOrder = orderId.filter(order => order.status === 'PENDING')[0].id
     console.log('@@@@@@@@@@@@@@', cartOrder)
     return (
       <div className="bgPages">
-        {/* <h1>Cart</h1>
-        <h2>
-          Items in Cart: {totalQuantity} SubTotal: ${subTotal.toFixed(2)}
-        </h2> */}
         {cartArr.length ? (
           <div>
             <div id="wrap">
@@ -182,10 +176,6 @@ class Cart extends React.Component {
                   </div>
                   <div className="complete">
                     <a className="button">
-                      {/* <Link to="/checkout" params={{ orderId: orderId[0].id}}>
-                    Checkout
-                    </Link> */}
-
                       <div>
                         <p onClick={() => this.handleChange()}>Check Out</p>
                       </div>
@@ -278,43 +268,3 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Cart)
-
-{
-  /* <table>
-<thead>
-  <tr>
-    <th />
-    <th />
-    <th>Price</th>
-    <th>Quantity</th>
-  </tr>
-</thead>
-
-<tbody>
-  {cartArr.map(item => {
-    return (
-      <tr key={item.id}>
-        <td>
-          <Link to={`/Hats/${item.id}`}>
-            <img className="cartImages" src={item.productImg} />
-          </Link>
-        </td>
-        <td>
-          <Link to={`/Hats/${item.id}`}>{item.name}</Link>
-        </td>
-
-        <td>${(item.price / 100).toFixed(2)} </td>
-        <td>
-          {' '}
-          {
-            this.props.lineItems.filter(
-              product => product.hatId === item.id
-            )[0].quantity
-          }
-        </td>
-      </tr>
-    )
-  })}
-</tbody>
-</table> */
-}

@@ -58,7 +58,12 @@ router.get('/cart/:uid', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newOrder = await Order.create(req.body)
+    const [newOrder, wasCreated] = await Order.findOrCreate({
+      where: {
+        userId: req.body.userId,
+        oid: req.body.oid
+      }
+    })
     res.status(201).json(newOrder)
   } catch (err) {
     next(err)
