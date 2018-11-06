@@ -12,7 +12,12 @@ export class MyAccount extends React.Component {
   render() {
     const defaultUser = this.props.defaultUser
     const isAdmin = !!(defaultUser !== {} && defaultUser.user.isAdmin)
-    const userOrders = this.props.allOrders.filter(
+
+    const initialOrder = this.props.allOrders.filter(
+      order => order !== undefined
+    )
+
+    const userOrders = initialOrder.filter(
       order => order.oid === defaultUser.user.id && order.status === 'COMPLETED'
     )
 
@@ -29,9 +34,10 @@ export class MyAccount extends React.Component {
             return (
               <div key={order.id}>
                 <li>
-                  Order #{order.oid}: Order Total: ${(
-                    order.total / 100
-                  ).toFixed(2)}
+                  Order #{order.id}: Order Total: ${(order.total / 100).toFixed(
+                    2
+                  )}{' '}
+                  Date: {order.updatedAt.slice(0, 10)}
                 </li>
               </div>
             )
@@ -47,9 +53,10 @@ export class MyAccount extends React.Component {
           return (
             <div key={order.id}>
               <li>
-                Order #{order.oid}: Order Total: ${(order.total / 100).toFixed(
+                Order #{order.id}: Order Total: ${(order.total / 100).toFixed(
                   2
-                )}
+                )}{' '}
+                Date: {order.updatedAt.slice(0, 10)}
               </li>
             </div>
           )
