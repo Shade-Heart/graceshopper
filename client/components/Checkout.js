@@ -5,14 +5,19 @@ import CheckoutForm from './CheckoutForm'
 class Checkout extends Component {
   render() {
     return (
-      <StripeProvider apiKey="pk_test_BWjSNljxQTKKCw09tzm2oSvw">
-        <div className="example">
-          <h2> Thanks for shopping at Mad Hatters! </h2>
-          <Elements>
-            <CheckoutForm />
-          </Elements>
-        </div>
-      </StripeProvider>
+      <div>
+        <StripeProvider apiKey="pk_test_BWjSNljxQTKKCw09tzm2oSvw">
+          <div>
+            {/* <h2> Thanks for shopping at Mad Hatters! </h2> */}
+            <Elements>
+              <CheckoutForm
+                orderId={this.props.orderId}
+                subTotal={this.props.subTotal}
+              />
+            </Elements>
+          </div>
+        </StripeProvider>
+      </div>
     )
   }
 }

@@ -720,3 +720,13 @@ header {
   color: #fff;
 }
 /* END NAVBAR/HOMEPAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.checkoutStripe {
+  margin-left: auto;
+}
+
+.completeCheckout,
+h1,
+h2 {
+  text-align: center;
+}

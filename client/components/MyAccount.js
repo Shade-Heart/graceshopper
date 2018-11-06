@@ -2,19 +2,40 @@ import React from 'react'
 import AddHat from './AddHat'
 import EditHat from './EditHat'
 import {connect} from 'react-redux'
+import {gotOrders} from '../store/orderReducer'
 
 export class MyAccount extends React.Component {
+  async componentDidMount() {
+    await this.props.gotOrders()
+  }
+
   render() {
     const defaultUser = this.props.defaultUser
     const isAdmin = !!(defaultUser !== {} && defaultUser.user.isAdmin)
+    const userOrders = this.props.allOrders.filter(
+      order => order.oid === defaultUser.user.id && order.status === 'COMPLETED'
+    )
 
     const adminPage = (
       <div className="bgPages">
         <h1> Hello Admin {defaultUser.user.firstName}</h1>
         <div>
-          <h3>Admin Controls</h3>
           <AddHat isAdmin={isAdmin} />
           <EditHat isAdmin={isAdmin} />
+        </div>
+        <div>
+          <h3>Past Orders</h3>
+          {userOrders.map(order => {
+            return (
+              <div key={order.id}>
+                <li>
+                  Order #{order.oid}: Order Total: ${(
+                    order.total / 100
+                  ).toFixed(2)}
+                </li>
+              </div>
+            )
+          })}
         </div>
       </div>
     )
@@ -22,8 +43,21 @@ export class MyAccount extends React.Component {
     const userPage = (
       <div>
         <h3>Past Orders</h3>
+        {userOrders.map(order => {
+          return (
+            <div key={order.id}>
+              <li>
+                Order #{order.oid}: Order Total: ${(order.total / 100).toFixed(
+                  2
+                )}
+              </li>
+            </div>
+          )
+        })}
       </div>
     )
+
+    console.log(userOrders)
 
     return isAdmin ? adminPage : userPage
   }
@@ -31,7 +65,9 @@ export class MyAccount extends React.Component {
 
 const mapState = state => {
   return {
-    defaultUser: state
+    defaultUser: state,
+    allOrders: state.orderReducer.allOrders
   }
 }
-export default connect(mapState)(MyAccount)
+const mapDispatch = {gotOrders}
+export default connect(mapState, mapDispatch)(MyAccount)

@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {CardElement, injectStripe} from 'react-stripe-elements'
+import axios from 'axios'
+import history from '../history'
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -9,6 +11,7 @@ class CheckoutForm extends Component {
   }
 
   async submit(ev) {
+    const {orderId, subTotal} = this.props
     let {token} = await this.props.stripe.createToken({name: 'Name'})
     let response = await fetch('/orders/charge', {
       method: 'POST',
@@ -18,13 +21,25 @@ class CheckoutForm extends Component {
     if (response.ok) {
       this.setState({complete: true})
       // Set transaction to completed in database and redirect to homepage
+      await axios.put(`/api/orders/status/${orderId}/${subTotal}`)
+
+      setTimeout(() => {
+        history.push('/home')
+      }, 3000)
     } else {
       alert('Transaction failed, please try again!')
     }
   }
 
   render() {
-    if (this.state.complete) return <h1> Purchase Complete! </h1>
+    if (this.state.complete)
+      return (
+        <div className="completeCheckout">
+          <h1 />
+          <h1> Purchase Complete! </h1>
+          <h2> Thanks for shopping at Mad Hatters! </h2>
+        </div>
+      )
     return (
       <div className="checkout">
         <p>Please enter your payment information to complete your purchase: </p>

@@ -4,6 +4,7 @@ import AddHat from './AddHat'
 import {connect} from 'react-redux'
 import {loadHats, removeHats} from '../store/allHatsReducer'
 import {Dropdown, Icon, Input, Image, Container} from 'semantic-ui-react'
+import {updateOrder} from './../store/orderReducer'
 
 export class AllHats extends React.Component {
   state = {
@@ -13,6 +14,11 @@ export class AllHats extends React.Component {
 
   componentDidMount() {
     this.props.loadHats()
+    const userId = this.props.id
+    console.log('++++_++__+__', this.props.defaultUser)
+    if (userId) {
+      this.props.editOrder(this.props.id)
+    }
   }
 
   handleChange(event, data) {
@@ -117,13 +123,15 @@ export class AllHats extends React.Component {
 const mapState = state => {
   return {
     allHats: state.allHats.allHats,
-    defaultUser: state.user
+    defaultUser: state.user,
+    id: state.user.id
   }
 }
 const mapDispatch = dispatch => {
   return {
     loadHats: () => dispatch(loadHats()),
-    deleteHat: id => dispatch(removeHats(id))
+    deleteHat: id => dispatch(removeHats(id)),
+    editOrder: id => dispatch(updateOrder(id))
   }
 }
 
