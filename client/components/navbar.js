@@ -5,25 +5,12 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {Label} from 'semantic-ui-react'
 
-const Navbar = ({handleClick, isLoggedIn, firstName}) => (
+const Navbar = ({handleClick, isLoggedIn, firstName, email}) => (
   <div>
     {/* <h1>GRACE SHOPPER</h1> */}
     {/* <nav> */}
     {isLoggedIn ? (
       <div>
-        {/* The navbar will show these links after you log in */}
-        {/* <Link to="/home">Home</Link>
-          <Link to="/hats">All Products</Link>
-          <Link to="/myaccount"> {`${firstName}'s Account`} </Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-          <Link to="/cart">
-            <Label image color="white">
-              <i className="shopping cart icon" />
-              Cart
-            </Label>
-          </Link> */}
         <header>
           <div className="navWrapper" id="home">
             <div className=" clearfix">
@@ -40,11 +27,19 @@ const Navbar = ({handleClick, isLoggedIn, firstName}) => (
                     <Link to="/myaccount">Account</Link>
                     {/* <Link to="/myaccount">{`${firstName}'s Account`}</Link> */}
                   </li>
-                  <li>
-                    <a href="/login" onClick={handleClick}>
-                      Logout
-                    </a>
-                  </li>
+                  {email ? (
+                    <li>
+                      <a href="/login" onClick={handleClick}>
+                        Logout
+                      </a>
+                    </li>
+                  ) : (
+                    <li>
+                      <a href="/signup" onClick={handleClick}>
+                        Sign Up
+                      </a>
+                    </li>
+                  )}
                   <li>
                     <Link to="/cart">Cart</Link>
                   </li>
@@ -96,7 +91,8 @@ const Navbar = ({handleClick, isLoggedIn, firstName}) => (
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    firstName: state.user.firstName
+    firstName: state.user.firstName,
+    email: !!state.user.email
   }
 }
 
