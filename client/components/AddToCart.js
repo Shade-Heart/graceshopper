@@ -13,7 +13,6 @@ class AddToCart extends React.Component {
   componentDidMount() {
     this.props.gotOrders()
     this.props.fetchItems()
-
     // await this.props.defaultUser.id
   }
 

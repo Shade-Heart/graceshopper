@@ -5,8 +5,8 @@ import {connect} from 'react-redux'
 import {gotOrders} from '../store/orderReducer'
 
 export class MyAccount extends React.Component {
-  async componentDidMount() {
-    await this.props.gotOrders()
+  componentDidMount() {
+    this.props.gotOrders()
   }
 
   render() {

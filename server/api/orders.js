@@ -78,7 +78,12 @@ router.post('/charge', async (req, res, next) => {
 router.put('/:uid', async (req, res, next) => {
   try {
     const userId = req.params.uid
-    const order = await Order.findOne({where: {userId}})
+    const order = await Order.findOne({
+      where: {
+        userId,
+        status: 'PENDING'
+      }
+    })
     const modifiedItem = await order.update({
       oid: userId
     })
@@ -92,7 +97,12 @@ router.put('/status/:orderId/:subtotal', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
     const subtotal = req.params.subtotal
-    const order = await Order.findById(orderId)
+    const order = await Order.findOne({
+      where: {
+        id: orderId,
+        status: 'PENDING'
+      }
+    })
     const modifiedItem = await order.update({
       status: 'COMPLETED',
       total: subtotal
