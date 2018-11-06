@@ -664,6 +664,7 @@ header {
   background: url(https://cdn.shopify.com/s/files/1/0157/8796/t/6/assets/slideshow_2.jpg?7715386223625535679);
   background-size: cover;
   background-attachment: fixed;
+  height: 100%;
 }
 
 .hero {
