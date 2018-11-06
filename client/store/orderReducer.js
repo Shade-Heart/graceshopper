@@ -58,6 +58,7 @@ export const gotOrder = oid => async dispatch => {
 
 export const postOrder = uid => async dispatch => {
   try {
+    console.log('UID', uid)
     const {data} = await axios.post('/api/orders', {userId: uid})
     dispatch(makeOrder(data))
   } catch (err) {

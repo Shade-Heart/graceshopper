@@ -17,9 +17,8 @@ class Cart extends React.Component {
     await this.props.gotOrders()
     const userId = this.props.defaultUser.id
     const orderId = this.props.allOrders.filter(order => order.oid === userId)
-    console.log(orderId[0])
-    this.props.gotItems(orderId[0].id)
-    this.props.loadHats()
+    await this.props.gotItems(orderId[0].id)
+    await this.props.loadHats()
   }
 
   render() {
@@ -49,15 +48,8 @@ class Cart extends React.Component {
     const userId = this.props.defaultUser.id
     const orderId = this.props.allOrders.filter(order => order.oid === userId)
 
-    // console.log('CARRTT!!!!!!!!!!',cartArr)
-    // console.log('LINE-ITEMS!!!!!!!!!!',this.props.lineItems)
-
     return (
       <div className="bgPages">
-        {/* <h1>Cart</h1>
-        <h2>
-          Items in Cart: {totalQuantity} SubTotal: ${subTotal.toFixed(2)}
-        </h2> */}
         {cartArr.length ? (
           <div id="wrap">
             <div id="cart_layout_2">
@@ -101,8 +93,6 @@ class Cart extends React.Component {
                     </div>
                     <div className="qty">
                       <div className="center">
-                        {/* <input for="qty">
-          </input> */}
                         {
                           this.props.lineItems.filter(
                             product => product.hatId === item.id
@@ -250,43 +240,3 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Cart)
-
-{
-  /* <table>
-<thead>
-  <tr>
-    <th />
-    <th />
-    <th>Price</th>
-    <th>Quantity</th>
-  </tr>
-</thead>
-
-<tbody>
-  {cartArr.map(item => {
-    return (
-      <tr key={item.id}>
-        <td>
-          <Link to={`/Hats/${item.id}`}>
-            <img className="cartImages" src={item.productImg} />
-          </Link>
-        </td>
-        <td>
-          <Link to={`/Hats/${item.id}`}>{item.name}</Link>
-        </td>
-
-        <td>${(item.price / 100).toFixed(2)} </td>
-        <td>
-          {' '}
-          {
-            this.props.lineItems.filter(
-              product => product.hatId === item.id
-            )[0].quantity
-          }
-        </td>
-      </tr>
-    )
-  })}
-</tbody>
-</table> */
-}

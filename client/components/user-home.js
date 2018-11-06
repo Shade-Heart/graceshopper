@@ -11,20 +11,21 @@ export class UserHome extends React.Component {
   async componentDidMount() {
     await this.props.gotOrders()
     const userId = this.props.id
+
     const userCart = this.props.allOrders.filter(
       order => order.userId === userId
     )
-    // console.log("FILTER", this.props.allOrders.filter(order => order.userId === 2))
     if (userCart.length < 1) {
       this.props.postOrder(userId)
     }
     this.props.editOrder(userId)
-    // this.props.fetchOrder(userId)
   }
 
   render() {
     const displayName =
-      this.props.firstName === undefined || this.props.firstName === null
+      this.props.firstName === undefined ||
+      this.props.firstName === null ||
+      this.props.firstName === ''
         ? this.props.email
         : this.props.firstName
 
@@ -45,7 +46,6 @@ const mapState = state => {
     firstName: state.user.firstName,
     id: state.user.id,
     allOrders: state.orderReducer.allOrders
-    // order: state.order
   }
 }
 

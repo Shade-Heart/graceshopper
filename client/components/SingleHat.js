@@ -27,7 +27,6 @@ export class SingleHat extends Component {
   render() {
     const hat = this.props.singleHat
     const defaultUser = this.props.defaultUser
-    // const userId = !!(defaultUser !== {} ? defaultUser.id : 1)// chage this for the session afterwards
     const isAdmin = !!(defaultUser !== {} && defaultUser.isAdmin)
     return (
       <div>

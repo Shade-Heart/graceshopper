@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {postItem, fetchItems, updateItem} from './../store/lineItem'
-import {gotOrders} from './../store/orderReducer'
+import {gotOrders, postOrder, editOrder} from './../store/orderReducer'
+import {guest} from '../store'
+
 import {Link} from 'react-router-dom'
 
 class AddToCart extends React.Component {
@@ -13,23 +15,30 @@ class AddToCart extends React.Component {
   componentDidMount() {
     this.props.gotOrders()
     this.props.fetchItems()
-
-    // await this.props.defaultUser.id
   }
 
-  handleClick() {
-    const userId = this.props.defaultUser.id
-    // console.log('PROPS', this.props)
+  async handleClick() {
+    const defaultUser = this.props.defaultUser
 
-    // console.log('LUEGFLUBVSKEHB:VOIWHO:IFE',this.props)
+    const isLoggedin = Object.keys(defaultUser).length !== 0
+
+    if (!isLoggedin) {
+      await this.props.guest()
+      // console.log('GUEST', guestUser, 'PROPS', this.props)
+      const userId = guestUser.id
+      await this.props.postOrder(userId)
+      await this.props.editOrder(userId)
+    }
+    const userId = this.props.defaultUser.id
+
+    await this.props.gotOrders()
+
     const userCart = this.props.allOrders.filter(
       order => order.userId === userId
     )
-    // console.log('+++++++++++++++++', session)
 
     // dispatches function to create line item
     const orderId = userCart[0].id
-    // this.props.postItem(orderId, productId)
     const {productId, allLineItems} = this.props
 
     const itemExists = allLineItems.filter(
@@ -67,7 +76,11 @@ const mapDispatch = dispatch => {
     postItem: (orderId, productId) => dispatch(postItem(orderId, productId)),
     gotOrders: () => dispatch(gotOrders()),
     fetchItems: () => dispatch(fetchItems()),
-    updateItem: (orderId, productId) => dispatch(updateItem(orderId, productId))
+    updateItem: (orderId, productId) =>
+      dispatch(updateItem(orderId, productId)),
+    postOrder: id => dispatch(postOrder(id)),
+    editOrder: id => dispatch(editOrder(id)),
+    guest: () => dispatch(guest())
   }
 }
 export default connect(mapState, mapDispatch)(AddToCart)

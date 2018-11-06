@@ -32,6 +32,21 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
+router.post('/guest', async (req, res, next) => {
+  console.log('HIT BACK END ROUTE HELLO 2222222222')
+  try {
+    const [user, wasCreated] = await User.findOrCreate({
+      where: {
+        sessionId: req.session.id
+      }
+    })
+    console.log('SENDING USER', user.dataValues)
+    res.send(user.dataValues)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/logout', (req, res) => {
   req.logout()
   req.session.destroy()
@@ -39,10 +54,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
-  // let cart = req.session.cart = [{productId: 4, quantity: 10, price: 2}] || [];
-  // console.log('--------------------------------',req.user.id)
-  // console.log('--------------------------------',req.session.passport.user)
-  console.log(req.user.id)
+  // console.log(req.user.id)
   res.json(req.user)
 })
 
