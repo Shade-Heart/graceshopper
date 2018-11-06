@@ -32,6 +32,19 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
+router.post('/guest', async (req, res, next) => {
+  try {
+    const [user, wasCreated] = await User.findOrCreate({
+      where: {
+        sessionId: req.session.id
+      }
+    })
+    res.send(user.dataValues)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/logout', (req, res) => {
   req.logout()
   req.session.destroy()

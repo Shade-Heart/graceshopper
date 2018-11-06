@@ -17,8 +17,9 @@ class AddToCart extends React.Component {
   }
 
   handleClick() {
+    console.log('PROPS', this.props)
+
     const userId = this.props.defaultUser.id
-    // console.log('PROPS', this.props)
 
     // console.log('LUEGFLUBVSKEHB:VOIWHO:IFE',this.props)
     const userCart = this.props.allOrders.filter(

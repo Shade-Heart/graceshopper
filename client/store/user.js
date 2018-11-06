@@ -61,6 +61,17 @@ export const auth = (
   }
 }
 
+export const guest = () => async dispatch => {
+  try {
+    console.log('HERE')
+    const res = await axios.post('/auth/guest')
+    console.log('DASASHDKAS', res.data)
+    dispatch(getUser(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
