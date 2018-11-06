@@ -88,9 +88,9 @@ class AddHat extends React.Component {
                 required
               >
                 <option value="">--</option>
-                <option value="Cowboy">Cowboy</option>
-                <option value="Santa">Santa</option>
-                <option value="Baseball-Caps">Baseball Caps</option>
+                <option value="Classy">Classy</option>
+                <option value="Rancher">Rancher</option>
+                <option value="Hipster">Hipster</option>
               </select>
             </label>
 

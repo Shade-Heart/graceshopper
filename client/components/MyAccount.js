@@ -1,6 +1,5 @@
 import React from 'react'
 import AddHat from './AddHat'
-import EditHat from './EditHat'
 import {connect} from 'react-redux'
 import {gotOrders} from '../store/orderReducer'
 
@@ -26,7 +25,6 @@ export class MyAccount extends React.Component {
         <h1> Hello Admin {defaultUser.user.firstName}</h1>
         <div>
           <AddHat isAdmin={isAdmin} />
-          <EditHat isAdmin={isAdmin} />
         </div>
         <div>
           <h3>Past Orders</h3>
