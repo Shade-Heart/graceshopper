@@ -10,9 +10,15 @@ export class MyAccount extends React.Component {
   }
 
   render() {
+    console.log(this.props.allOrders)
     const defaultUser = this.props.defaultUser
     const isAdmin = !!(defaultUser !== {} && defaultUser.user.isAdmin)
-    const userOrders = this.props.allOrders.filter(
+
+    const initialOrders = this.props.allOrders.filter(
+      order => order !== undefined
+    )
+
+    const userOrders = initialOrders.filter(
       order => order.oid === defaultUser.user.id && order.status === 'COMPLETED'
     )
 
