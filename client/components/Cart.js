@@ -18,7 +18,9 @@ class Cart extends React.Component {
   }
 
   async componentDidMount() {
-    // await this.props.getUser()
+    if (this.props.defaultUser.email) {
+      await this.props.getUser()
+    }
     await this.props.gotOrders()
     const userId = this.props.defaultUser.id
     console.log(userId)
