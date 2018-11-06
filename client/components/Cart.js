@@ -63,6 +63,8 @@ class Cart extends React.Component {
     // console.log('CARRTT!!!!!!!!!!',cartArr)
     // console.log('LINE-ITEMS!!!!!!!!!!',this.props.lineItems)
 
+    const cartOrder = orderId.filter(order => order.status === 'PENDING')[0].id
+    console.log('@@@@@@@@@@@@@@', cartOrder)
     return (
       <div className="bgPages">
         {/* <h1>Cart</h1>
@@ -194,7 +196,7 @@ class Cart extends React.Component {
             </div>
             {this.state.toggle ? (
               <div className="checkoutStripe">
-                <Checkout orderId={orderId[0].id} subTotal={subTotal} />
+                <Checkout orderId={cartOrder} subTotal={subTotal} />
               </div>
             ) : null}
           </div>

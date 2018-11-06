@@ -14,11 +14,9 @@ export class AllHats extends React.Component {
 
   componentDidMount() {
     this.props.loadHats()
-    const userId = this.props.id
+    // const userId = this.props.id
     console.log('++++_++__+__', this.props.defaultUser)
-    if (userId) {
-      this.props.editOrder(this.props.id)
-    }
+    // this.props.editOrder(userId)
   }
 
   handleChange(event, data) {
@@ -87,7 +85,7 @@ export class AllHats extends React.Component {
             {allHats.map(hat => {
               return (
                 <div className="column" key={hat.id}>
-                  <div className="ui segment">
+                  <div className="ui segment" style={{height: 350}}>
                     <Image
                       src={`/${hat.productImg}`}
                       size="large"
@@ -96,7 +94,15 @@ export class AllHats extends React.Component {
                     />
                     <Link to={`/Hats/${hat.id}`}>
                       {' '}
-                      <p className="ui segment center blue inverted">
+                      <p
+                        className="ui segment center blue inverted"
+                        style={{
+                          height: 80,
+                          textAlign: 'center',
+                          fontSize: 18,
+                          margin: 'auto'
+                        }}
+                      >
                         {hat.name}
                       </p>{' '}
                     </Link>
