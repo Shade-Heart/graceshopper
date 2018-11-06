@@ -15,7 +15,6 @@ export class UserHome extends React.Component {
       order => order.userId === userId
     )
     const pendingOrders = userCart.filter(order => order.status === 'PENDING')
-    // console.log("FILTER", this.props.allOrders.filter(order => order.userId === 2))
     if (!pendingOrders.length < 1) {
       this.props.editOrder(userId)
     } else {

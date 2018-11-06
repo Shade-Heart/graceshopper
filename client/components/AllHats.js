@@ -14,9 +14,6 @@ export class AllHats extends React.Component {
 
   componentDidMount() {
     this.props.loadHats()
-    // const userId = this.props.id
-    console.log('++++_++__+__', this.props.defaultUser)
-    // this.props.editOrder(userId)
   }
 
   handleChange(event, data) {

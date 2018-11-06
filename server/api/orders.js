@@ -3,9 +3,8 @@ const {Order} = require('../db/models')
 const stripe = require('stripe')('sk_test_BescWFbYN8TQWP24irdmOeDM')
 const {isLoggedIn, isAdmin} = require('./authentication-middleware')
 
-router.get('/', isLoggedIn, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    console.log(req.session)
     const hats = await Order.findAll({
       include: [{all: true}]
     })
@@ -15,7 +14,7 @@ router.get('/', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.get('/:id', isLoggedIn, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const oneOrder = await Order.findById(req.params.id, {
       include: [{all: true}]
@@ -26,7 +25,7 @@ router.get('/:id', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.get('/oid/:oid', isLoggedIn, async (req, res, next) => {
+router.get('/oid/:oid', async (req, res, next) => {
   try {
     const oid = req.params.oid
     const oneOrder = await Order.findAll({
@@ -41,7 +40,7 @@ router.get('/oid/:oid', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.get('/cart/:uid', isLoggedIn, async (req, res, next) => {
+router.get('/cart/:uid', async (req, res, next) => {
   try {
     const userId = req.params.uid
     const oneOrder = await Order.findAll({
@@ -57,7 +56,7 @@ router.get('/cart/:uid', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.post('/', isLoggedIn, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const [newOrder, wasCreated] = await Order.findOrCreate({
       where: {
@@ -71,7 +70,7 @@ router.post('/', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.post('/charge', isLoggedIn, async (req, res, next) => {
+router.post('/charge', async (req, res, next) => {
   try {
     let {status} = await stripe.charges.create(req.body)
     res.status(201).json({status})
@@ -80,7 +79,7 @@ router.post('/charge', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.put('/:uid', isLoggedIn, async (req, res, next) => {
+router.put('/:uid', async (req, res, next) => {
   try {
     const userId = req.params.uid
     const order = await Order.findOne({
@@ -98,7 +97,7 @@ router.put('/:uid', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.put('/status/:orderId/:subtotal', isLoggedIn, async (req, res, next) => {
+router.put('/status/:orderId/:subtotal', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
     const subtotal = req.params.subtotal
