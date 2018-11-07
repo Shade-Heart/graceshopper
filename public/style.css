@@ -109,15 +109,16 @@ form div {
 }
 .product_details {
   display: block;
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  max-width: 200px;
+  word-wrap: break-word;
   width: 80%;
   margin-bottom: 1em;
   text-align: left;
 }
 .product_details span {
-  margin-right: 10px;
-  font-size: 30px;
-  text-align: center;
+  font-size: 20px;
+  text-align: left;
 }
 .cart_details h3 {
   border-bottom: 2px solid #aaa;
@@ -452,7 +453,7 @@ form div {
 .singleHatContainer {
   width: 70%;
   background-color: #fff;
-  margin: 2em auto;
+  margin: auto;
   display: flex;
   border-radius: 10px;
   box-shadow: 5px 5px 5px 5px rgb(94, 94, 94);
@@ -485,7 +486,7 @@ form div {
 }
 
 .focus {
-  background-color: #82ca9c;
+  background-color: rgb(0, 137, 202);
   color: #fff;
   border: 1px solid gray;
   width: 77px;
@@ -527,19 +528,28 @@ footer {
 }
 
 .right h1 {
-  color: #82ca9c;
-  margin: auto;
+  color: #000;
 }
 .right a {
-  color: #82ca9c;
+  color: #000;
 }
 .right h4 {
-  color: #82ca9c;
+  color: #000;
 }
 
 /* END SINGLE ITEM PAGE ~~~~~~~~~~~~~~~~`*/
 
 .adminOp {
+  position: relative;
+  margin-left: auto;
+}
+.adminOp button {
+  position: relative;
+  margin-left: 43%;
+}
+.adminOp form,
+label,
+input {
   position: relative;
   margin-left: 43%;
 }
@@ -550,7 +560,7 @@ footer {
 .backToList p {
   font-size: 20px;
   border: 1px solid gray;
-  background-color: #82ca9c;
+  background-color: rgb(0, 137, 202);
   color: #fff;
   border-radius: 3px;
   margin: auto;
@@ -730,4 +740,89 @@ header {
 h1,
 h2 {
   text-align: center;
+}
+/* END CHECKOUT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+a {
+  text-decoration: none;
+  color: white;
+}
+.form {
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  background-color: #333;
+  max-width: 500px;
+  border-radius: 4px;
+  margin: 30px auto 0 auto;
+  padding: 30px 40px;
+}
+.tab-group {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.tab-group li {
+  width: 50%;
+  display: flex;
+}
+.tab-group li a {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 15px;
+  background-color: #369;
+}
+.form a:hover {
+  background-color: #47a;
+}
+.header {
+  margin: 30px;
+  text-align: center;
+  font-size: 1.5em;
+}
+.form label {
+  z-index: 0;
+  opacity: 0.5;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  display: block;
+}
+.form input {
+  z-index: 999;
+  width: 100%;
+  /*   border-radius: 4px; */
+  padding: 10px;
+  border: 1px solid white;
+  background-color: transparent;
+}
+.form input:focus {
+  background-color: #595859;
+  outline: none;
+  border: 1px solid rgb(206, 205, 203);
+}
+.field-wrap {
+  position: relative;
+  margin: 10px 0;
+  width: 100%;
+  padding: 0 2px;
+}
+.top-row {
+  display: flex;
+}
+.form button {
+  width: 100%;
+  background-color: #369;
+  border: none;
+  font-size: 1.5em;
+  padding: 4px;
+}
+.tab-group a.active1 {
+  background-color: #147;
+}
+.form label span {
+  color: red;
+  font-size: 1.2em;
 }

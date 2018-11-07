@@ -27,16 +27,16 @@ export class MyAccount extends React.Component {
           <AddHat isAdmin={isAdmin} />
         </div>
         <div>
-          <h3>Past Orders</h3>
+          <h3 style={{marginLeft: 20}}>Past Orders:</h3>
           {userOrders.map(order => {
             return (
-              <div key={order.id}>
-                <li>
-                  Order #{order.id}: Order Total: ${(order.total / 100).toFixed(
-                    2
-                  )}{' '}
-                  Date: {order.updatedAt.slice(0, 10)}
-                </li>
+              <div
+                style={{marginBottom: 20, marginLeft: 20, fontSize: 18}}
+                key={order.id}
+              >
+                <div>Order #{order.id}:</div>
+                <div>Date: {order.updatedAt.slice(0, 10)}</div>
+                <div>Order Total: ${(order.total / 100).toFixed(2)}</div>
               </div>
             )
           })}

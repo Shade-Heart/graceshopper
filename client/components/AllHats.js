@@ -94,13 +94,15 @@ export class AllHats extends React.Component {
                       <p
                         className="ui segment center blue inverted"
                         style={{
-                          height: 80,
+                          height: 85,
                           textAlign: 'center',
-                          fontSize: 18,
-                          margin: 'auto'
+                          fontSize: 16
                         }}
                       >
                         {hat.name}
+                        <p style={{textAlign: 'center', fontSize: 14}}>
+                          ${(hat.price / 100).toFixed(2)}
+                        </p>
                       </p>{' '}
                     </Link>
 

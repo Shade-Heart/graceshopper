@@ -30,37 +30,41 @@ export class SingleHat extends Component {
     // const userId = !!(defaultUser !== {} ? defaultUser.id : 1)// chage this for the session afterwards
     const isAdmin = !!(defaultUser !== {} && defaultUser.isAdmin)
     return (
-      <div>
-        <main className="singleHatContainer">
-          <aside className="right">
-            <a>{hat.category}</a>
-            <h1>{hat.name}</h1>
-            <h4>{`Size: ${hat.size}`}</h4>
-            <h2>${(hat.price / 100).toFixed(2)}</h2>
-            <article id="description">
-              <p>{hat.description}</p>
-            </article>
-            {/* <button onClick={this.hatSpeak}>Click for sound!</button> */}
-            {/* <br /> */}
-            <div>
-              <AddToCart productId={hat.id} />
-            </div>
-          </aside>
-          <aside className="left">
-            <div className="backToList">
-              <Link to="/hats">
-                <p>Back to All Products</p>
-              </Link>
-            </div>
-            <img className="singleProductImage" src={`/${hat.productImg}`} />
-          </aside>
-        </main>
-        <div className="adminOp">
-          <EditHat
-            hatId={hat.id}
-            renderUpdatedHat={this.renderUpdatedHat}
-            isAdmin={isAdmin}
-          />
+      <div className="bgPages">
+        <div>
+          <main className="singleHatContainer">
+            <aside className="right">
+              <a>{hat.category}</a>
+              <h1 style={{textAlign: 'left'}}>{hat.name}</h1>
+              <h4>{`Size: ${hat.size}`}</h4>
+              <h2 style={{textAlign: 'left'}}>
+                ${(hat.price / 100).toFixed(2)}
+              </h2>
+              <article id="description">
+                <p>{hat.description}</p>
+              </article>
+              {/* <button onClick={this.hatSpeak}>Click for sound!</button> */}
+              {/* <br /> */}
+              <div>
+                <AddToCart productId={hat.id} />
+              </div>
+            </aside>
+            <aside className="left">
+              <div className="backToList">
+                <Link to="/hats">
+                  <p>Back to All Products</p>
+                </Link>
+              </div>
+              <img className="singleProductImage" src={`/${hat.productImg}`} />
+            </aside>
+          </main>
+          <div>
+            <EditHat
+              hatId={hat.id}
+              renderUpdatedHat={this.renderUpdatedHat}
+              isAdmin={isAdmin}
+            />
+          </div>
         </div>
       </div>
     )

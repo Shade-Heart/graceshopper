@@ -36,7 +36,7 @@ const Navbar = ({handleClick, isLoggedIn, firstName, email}) => (
                   ) : (
                     <li>
                       <a href="/signup" onClick={handleClick}>
-                        Sign Up
+                        Sign Up/Log In
                       </a>
                     </li>
                   )}
@@ -60,19 +60,19 @@ const Navbar = ({handleClick, isLoggedIn, firstName, email}) => (
               <nav className="mainNav clearfix">
                 <ul>
                   <li>
+                    <a style={{height: 63}} />
+                  </li>
+                  <li>
                     <Link to="/home">Home</Link>
                   </li>
                   <li>
                     <Link to="/hats">All Products</Link>
                   </li>
                   <li>
-                    <Link to="/login">Login</Link>
+                    <Link to="/signup">Log In</Link>
                   </li>
                   <li>
                     <Link to="/signup">Sign Up</Link>
-                  </li>
-                  <li>
-                    <a>Not a cart</a>
                   </li>
                 </ul>
               </nav>
